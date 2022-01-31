@@ -7,7 +7,6 @@ const colors = {
   secondary: "green",
   grey: "#ccc",
   black: "#111",
-  white: "#eee",
 };
 
 const theme = extendTheme({ colors });
