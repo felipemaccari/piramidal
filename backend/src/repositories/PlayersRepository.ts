@@ -19,6 +19,10 @@ class PlayersRepository {
 
     this.players.push(player);
   }
+
+  list(): Player[] {
+    return this.players;
+  }
 }
 
 export { PlayersRepository };

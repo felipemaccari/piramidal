@@ -13,4 +13,10 @@ playersRoutes.post("/", (request, response) => {
   return response.status(201).send();
 });
 
+playersRoutes.get("/", (request, response) => {
+  const players = playersRepository.list();
+
+  return response.status(201).json(players);
+});
+
 export { playersRoutes };
