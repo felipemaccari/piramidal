@@ -1,21 +1,16 @@
 import { Router } from "express";
 
-import { Player } from "../models/Player";
+import { PlayersRepository } from "../repositories/PlayersRepository";
 
 const playersRoutes = Router();
-
-const players: Player[] = [];
+const playersRepository = new PlayersRepository();
 
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;
 
-  const player = new Player();
+  playersRepository.create({ name, phone });
 
-  Object.assign(player, { name, phone, created_at: new Date() });
-
-  players.push(player);
-
-  return response.status(201).json(players);
+  return response.status(201).send();
 });
 
 export { playersRoutes };
