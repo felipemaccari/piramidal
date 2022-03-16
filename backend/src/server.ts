@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 
 import { logger } from "../utils/logger";
-import { playersRoutes } from "./players/players.routes";
+import { playersRoutes } from "./routes/players.routes";
 
 dotenv.config();
 

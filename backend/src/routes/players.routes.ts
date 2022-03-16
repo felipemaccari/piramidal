@@ -1,14 +1,17 @@
 import { Router } from "express";
-import { v4 as uuid } from "uuid";
+
+import { Player } from "../models/Player";
 
 const playersRoutes = Router();
 
-const players = [];
+const players: Player[] = [];
 
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;
 
-  const player = { id: uuid(), name, phone };
+  const player = new Player();
+
+  Object.assign(player, { name, phone, created_at: new Date() });
 
   players.push(player);
 
