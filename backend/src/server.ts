@@ -3,8 +3,11 @@ import express from "express";
 
 import { logger } from "../utils/logger";
 
-const app = express();
 dotenv.config();
+
+const app = express();
+
+app.use(express.json());
 
 app.get("/", (request, response) => {
   return response.json("here we go");
