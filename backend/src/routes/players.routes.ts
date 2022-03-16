@@ -8,6 +8,12 @@ const playersRepository = new PlayersRepository();
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;
 
+  const playerAlreadyExists = playersRepository.findByName(name);
+
+  if (playerAlreadyExists) {
+    return response.status(400).json({ error: "Player already exists" });
+  }
+
   playersRepository.create({ name, phone });
 
   return response.status(201).send();

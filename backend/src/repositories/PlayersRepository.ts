@@ -23,6 +23,12 @@ class PlayersRepository {
   list(): Player[] {
     return this.players;
   }
+
+  findByName(name: string): Player {
+    const player = this.players.find((player) => player.name === name);
+
+    return player;
+  }
 }
 
 export { PlayersRepository };

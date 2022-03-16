@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 
 class Player {
   id?: string;
-  nome: string;
+  name: string;
   phone: string;
   created_at: Date;
 
