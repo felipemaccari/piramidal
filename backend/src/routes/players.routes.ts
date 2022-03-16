@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import { PlayersRepository } from "../repositories/PlayersRepository";
+import { CreatePlayerService } from "../services/CreatePlayerService";
 
 const playersRoutes = Router();
 const playersRepository = new PlayersRepository();
@@ -8,13 +9,9 @@ const playersRepository = new PlayersRepository();
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;
 
-  const playerAlreadyExists = playersRepository.findByName(name);
+  const createPlayerService = new CreatePlayerService(playersRepository);
 
-  if (playerAlreadyExists) {
-    return response.status(400).json({ error: "Player already exists" });
-  }
-
-  playersRepository.create({ name, phone });
+  createPlayerService.execute({ name, phone });
 
   return response.status(201).send();
 });
