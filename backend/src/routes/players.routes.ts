@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import { PlayersRepository } from "../repositories/PlayersRepository";
-import { PostgresPlayersRepository } from "../repositories/PostgresPlayersRepository";
-import { CreatePlayerService } from "../services/CreatePlayerService";
+import { PlayersRepository } from "../modules/players/repositories/PlayersRepository";
+import { PostgresPlayersRepository } from "../modules/players/repositories/PostgresPlayersRepository";
+import { CreatePlayerService } from "../modules/players/services/CreatePlayerService";
 
 const playersRoutes = Router();
 const playersRepository = new PostgresPlayersRepository();
