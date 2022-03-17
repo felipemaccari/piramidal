@@ -1,10 +1,11 @@
 import { Router } from "express";
 
 import { PlayersRepository } from "../repositories/PlayersRepository";
+import { PostgresPlayersRepository } from "../repositories/PostgresPlayersRepository";
 import { CreatePlayerService } from "../services/CreatePlayerService";
 
 const playersRoutes = Router();
-const playersRepository = new PlayersRepository();
+const playersRepository = new PostgresPlayersRepository();
 
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;

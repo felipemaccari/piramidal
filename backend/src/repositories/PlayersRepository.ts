@@ -1,11 +1,7 @@
 import { Player } from "../models/Player";
+import { IPlayersRepository, ICreatePlayerDTO } from "./IPlayersRepository";
 
-interface ICreatePlayerDTO {
-  name: string;
-  phone: string;
-}
-
-class PlayersRepository {
+class PlayersRepository implements IPlayersRepository {
   private players: Player[];
 
   constructor() {
