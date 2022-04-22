@@ -1,11 +1,10 @@
 import { Router } from "express";
 
-import { PlayersRepository } from "../modules/players/repositories/PlayersRepository";
-import { PostgresPlayersRepository } from "../modules/players/repositories/PostgresPlayersRepository";
+import PlayersRepository from "../modules/players/repositories/PlayersRepository";
 import { CreatePlayerService } from "../modules/players/services/CreatePlayerService";
 
 const playersRoutes = Router();
-const playersRepository = new PostgresPlayersRepository();
+const playersRepository = new PlayersRepository();
 
 playersRoutes.post("/", (request, response) => {
   const { name, phone } = request.body;
@@ -23,4 +22,4 @@ playersRoutes.get("/", (request, response) => {
   return response.status(201).json(players);
 });
 
-export { playersRoutes };
+export default playersRoutes;

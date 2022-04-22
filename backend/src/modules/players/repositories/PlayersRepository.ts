@@ -1,4 +1,4 @@
-import { Player } from "../models/Player";
+import Player from "../models/Player";
 import { IPlayersRepository, ICreatePlayerDTO } from "./IPlayersRepository";
 
 class PlayersRepository implements IPlayersRepository {
@@ -27,4 +27,4 @@ class PlayersRepository implements IPlayersRepository {
   }
 }
 
-export { PlayersRepository };
+export default PlayersRepository;
