@@ -1,11 +1,21 @@
-import User from "../models/User";
-import { ICreateUserDTO, IUsersRepository } from "./IUsersRepository";
+import User from "../../models/User";
+import { ICreateUserDTO, IUsersRepository } from "../IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
   private users: User[];
 
-  constructor() {
+  private static INSTANCE: UsersRepository;
+
+  private constructor() {
     this.users = [];
+  }
+
+  public static getInstance(): UsersRepository {
+    if (!UsersRepository.INSTANCE) {
+      UsersRepository.INSTANCE = new UsersRepository();
+    }
+
+    return UsersRepository.INSTANCE;
   }
 
   create({ name, email, password }: ICreateUserDTO): void {
