@@ -1,11 +1,11 @@
-import { IPlayersRepository } from "../repositories/IPlayersRepository";
+import { IPlayersRepository } from "../../repositories/IPlayersRepository";
 
 interface IRequest {
   name: string;
   phone: string;
 }
 
-class CreatePlayerService {
+class CreatePlayerUseCase {
   constructor(private playersRepository: IPlayersRepository) {}
 
   execute({ name, phone }: IRequest): void {
@@ -19,4 +19,4 @@ class CreatePlayerService {
   }
 }
 
-export { CreatePlayerService };
+export default CreatePlayerUseCase;

@@ -1,20 +1,12 @@
 import { Router } from "express";
 
-import PlayersRepository from "../modules/players/repositories/PlayersRepository";
-import { CreatePlayerService } from "../modules/players/services/CreatePlayerService";
+import createPlayerController from "../modules/players/useCases/createPlayer";
 
 const playersRoutes = Router();
-const playersRepository = new PlayersRepository();
 
-playersRoutes.post("/", (request, response) => {
-  const { name, phone } = request.body;
-
-  const createPlayerService = new CreatePlayerService(playersRepository);
-
-  createPlayerService.execute({ name, phone });
-
-  return response.status(201).send();
-});
+playersRoutes.post("/", (request, response) =>
+  createPlayerController.handle(request, response)
+);
 
 playersRoutes.get("/", (request, response) => {
   const players = playersRepository.list();
