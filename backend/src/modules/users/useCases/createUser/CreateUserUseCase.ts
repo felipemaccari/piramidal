@@ -1,10 +1,8 @@
-import {
-  ICreateUserDTO,
-  IUsersRepository,
-} from "../repositories/IUsersRepository";
+import UsersRepository from "../../repositories/implementations/UsersRepository";
+import { ICreateUserDTO } from "../../repositories/IUsersRepository";
 
-class CreateUserService {
-  constructor(private userRepository: IUsersRepository) {}
+class CreateUserUseCase {
+  constructor(private userRepository: UsersRepository) {}
 
   execute({ name, email, password }: ICreateUserDTO): void {
     const userAlreadyExists = this.userRepository.findByEmail(email);
@@ -17,4 +15,4 @@ class CreateUserService {
   }
 }
 
-export default CreateUserService;
+export default CreateUserUseCase;

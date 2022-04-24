@@ -1,10 +1,8 @@
 import { Router } from "express";
 
-import UsersRepository from "../modules/users/repositories/UsersRepository";
-import CreateUserService from "../modules/users/services/CreateUserService";
+import createUserController from "../modules/users/useCases/createUser";
 
 const usersRoutes = Router();
-const userRepository = new UsersRepository();
 
 usersRoutes.get("/", (request, response) => {
   const users = userRepository.list();
@@ -12,14 +10,8 @@ usersRoutes.get("/", (request, response) => {
   return response.status(201).json(users);
 });
 
-usersRoutes.post("/", (request, response) => {
-  const { name, email, password } = request.body;
-
-  const createUserService = new CreateUserService(userRepository);
-
-  createUserService.execute({ name, email, password });
-
-  return response.status(201).send();
-});
+usersRoutes.post("/", (request, response) =>
+  createUserController.handle(request, response)
+);
 
 export default usersRoutes;
