@@ -1,0 +1,82 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Piramidal",
+    "description": "1.0.0",
+    "contact": {
+      "email": "felipecesarmaccari@gmail.com"
+    }
+  },
+  "paths": {
+    "/players": {
+      "post": {
+        "tags": ["Players"],
+        "summary": "Create a player",
+        "description": "Create a new player",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Player Name",
+                  "phone": "123456789"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Player already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Players"],
+        "summary": "List all players",
+        "description": "List all players",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
