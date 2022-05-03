@@ -78,8 +78,6 @@ const Pyramid = () => {
     setPlayerLines(mouting);
   }, []);
 
-  console.log("playerLines", playerLines);
-
   return (
     <Flex direction="column">
       {playerLines.map((player, index) => (
