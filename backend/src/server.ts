@@ -6,6 +6,8 @@ import { logger } from "../utils/logger";
 import router from "./routes";
 import swaggerFile from "./swagger.json";
 
+import "./database";
+
 dotenv.config();
 
 const app = express();
