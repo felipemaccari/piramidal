@@ -1,6 +1,18 @@
 version: "3.7"
 
 services:
+  database:
+    image: postgres
+    container_name: piramidal_database
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=441332
+      - POSTGRES_DB=piramidal
+    volumes:
+      - pgdata:/data
   app:
     build: .
     container_name: piramidal
@@ -8,3 +20,11 @@ services:
       - 3335:3335
     volumes:
       - .:/usr/app
+    links:
+      - database
+    depends_on:
+      - database
+
+volumes:
+  pgdata:
+    driver: local
