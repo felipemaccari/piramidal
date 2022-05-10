@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.9"
 
 services:
   database:
@@ -6,16 +6,17 @@ services:
     container_name: piramidal_database
     restart: always
     ports:
-      - 5433:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=441332
       - POSTGRES_DB=piramidal
     volumes:
-      - pgdata:/data
+      - pgdata:/data/postgres
   app:
     build: .
     container_name: piramidal
+    restart: always
     ports:
       - 3335:3335
     volumes:
