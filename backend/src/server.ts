@@ -5,6 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import { AppDataSource } from "./database";
 import router from "./routes";
 import swaggerFile from "./swagger.json";
+import "./shared/container";
 
 AppDataSource.initialize()
   .then(async () => {

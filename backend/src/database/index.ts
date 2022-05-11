@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   database: "piramidal",
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: ["./src/modules/**/entities/*.ts"],
   migrations: ["./src/database/migrations/{*.ts}"],
   subscribers: [],
 });

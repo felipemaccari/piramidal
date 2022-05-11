@@ -1,39 +1,32 @@
+import { Repository } from "typeorm";
+
+import { AppDataSource } from "../../../../database";
 import User from "../../entities/User";
 import { ICreateUserDTO, IUsersRepository } from "../IUsersRepository";
 
 class UsersRepository implements IUsersRepository {
-  private users: User[];
+  private repository: Repository<User>;
 
-  private static INSTANCE: UsersRepository;
-
-  private constructor() {
-    this.users = [];
+  constructor() {
+    this.repository = AppDataSource.getRepository(User);
   }
 
-  public static getInstance(): UsersRepository {
-    if (!UsersRepository.INSTANCE) {
-      UsersRepository.INSTANCE = new UsersRepository();
-    }
+  async create({ name, email, password }: ICreateUserDTO): Promise<void> {
+    const user = await this.repository.create({ name, email, password });
 
-    return UsersRepository.INSTANCE;
+    await this.repository.save(user);
   }
 
-  create({ name, email, password }: ICreateUserDTO): void {
-    const user = new User();
+  async list(): Promise<User[]> {
+    const users = await this.repository.find();
 
-    Object.assign(user, { name, email, password, created_at: new Date() });
-
-    this.users.push(user);
+    return users;
   }
 
-  list(): User[] {
-    return this.users;
-  }
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.repository.findOneBy({ email });
 
-  findByEmail(email: string): User {
-    const duplicatedUser = this.users.find((user) => user.email === email);
-
-    return duplicatedUser;
+    return user;
   }
 }
 

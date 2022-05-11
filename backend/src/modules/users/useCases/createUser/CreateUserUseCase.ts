@@ -1,17 +1,22 @@
+import { inject, injectable } from "tsyringe";
+
 import UsersRepository from "../../repositories/implementations/UsersRepository";
 import { ICreateUserDTO } from "../../repositories/IUsersRepository";
 
+@injectable()
 class CreateUserUseCase {
-  constructor(private userRepository: UsersRepository) {}
+  constructor(
+    @inject("UsersRepository") private userRepository: UsersRepository
+  ) {}
 
-  execute({ name, email, password }: ICreateUserDTO): void {
-    const userAlreadyExists = this.userRepository.findByEmail(email);
+  async execute({ name, email, password }: ICreateUserDTO): Promise<void> {
+    const userAlreadyExists = await this.userRepository.findByEmail(email);
 
     if (userAlreadyExists) {
       throw new Error("Email already exists");
     }
 
-    this.userRepository.create({ name, email, password });
+    await this.userRepository.create({ name, email, password });
   }
 }
 

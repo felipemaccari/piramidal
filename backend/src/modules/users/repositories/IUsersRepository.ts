@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../entities/User";
 
 interface ICreateUserDTO {
   name: string;
@@ -7,9 +7,9 @@ interface ICreateUserDTO {
 }
 
 interface IUsersRepository {
-  create({ name, email, password }: ICreateUserDTO);
-  list(): User[];
-  findByEmail(email): User;
+  create({ name, email, password }: ICreateUserDTO): Promise<void>;
+  list(): Promise<User[]>;
+  findByEmail(email): Promise<User>;
 }
 
 export { IUsersRepository, ICreateUserDTO };
