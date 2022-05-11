@@ -1,4 +1,4 @@
-import Player from "../../models/Player";
+import Player from "../../entities/Player";
 import { IPlayersRepository, ICreatePlayerDTO } from "../IPlayersRepository";
 
 class PlayersRepository implements IPlayersRepository {
