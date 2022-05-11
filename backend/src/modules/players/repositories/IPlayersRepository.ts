@@ -1,4 +1,4 @@
-import Player from "../models/Player";
+import Player from "../entities/Player";
 
 interface ICreatePlayerDTO {
   name: string;
@@ -6,9 +6,9 @@ interface ICreatePlayerDTO {
 }
 
 interface IPlayersRepository {
-  create({ name, phone }: ICreatePlayerDTO);
-  list(): Player[];
-  findByName(name: string): Player;
+  create({ name, phone }: ICreatePlayerDTO): Promise<void>;
+  list(): Promise<Player[]>;
+  findByName(name: string): Promise<Player>;
 }
 
 export { IPlayersRepository, ICreatePlayerDTO };

@@ -1,11 +1,16 @@
-import Player from "../../models/Player";
+import { inject, injectable } from "tsyringe";
+
+import Player from "../../entities/Player";
 import PlayersRepository from "../../repositories/implementations/PlayersRepository";
 
+@injectable()
 class ListPlayersUseCase {
-  constructor(private playersRepository: PlayersRepository) {}
+  constructor(
+    @inject("PlayersRepository") private playersRepository: PlayersRepository
+  ) {}
 
-  execute(): Player[] {
-    return this.playersRepository.list();
+  async execute(): Promise<Player[]> {
+    return await this.playersRepository.list();
   }
 }
 

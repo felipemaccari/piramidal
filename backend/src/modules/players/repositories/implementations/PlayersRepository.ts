@@ -1,37 +1,30 @@
+import { Repository } from "typeorm";
+
+import { AppDataSource } from "../../../../database";
 import Player from "../../entities/Player";
 import { IPlayersRepository, ICreatePlayerDTO } from "../IPlayersRepository";
 
 class PlayersRepository implements IPlayersRepository {
-  private players: Player[];
+  private repository: Repository<Player>;
 
-  private static INSTANCE: PlayersRepository;
-
-  private constructor() {
-    this.players = [];
+  constructor() {
+    this.repository = AppDataSource.getRepository(Player);
   }
 
-  public static getInstance(): PlayersRepository {
-    if (!PlayersRepository.INSTANCE) {
-      PlayersRepository.INSTANCE = new PlayersRepository();
-    }
+  async create({ name, phone }: ICreatePlayerDTO): Promise<void> {
+    const player = await this.repository.create({ name, phone });
 
-    return PlayersRepository.INSTANCE;
+    await this.repository.save(player);
   }
 
-  create({ name, phone }: ICreatePlayerDTO): void {
-    const player = new Player();
+  async list(): Promise<Player[]> {
+    const players = await this.repository.find();
 
-    Object.assign(player, { name, phone, created_at: new Date() });
-
-    this.players.push(player);
+    return players;
   }
 
-  list(): Player[] {
-    return this.players;
-  }
-
-  findByName(name: string): Player {
-    const player = this.players.find((player) => player.name === name);
+  async findByName(name: string): Promise<Player> {
+    const player = await this.repository.findOneBy({ name });
 
     return player;
   }

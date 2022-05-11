@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { IPlayersRepository } from "../../repositories/IPlayersRepository";
 
 interface IRequest {
@@ -5,17 +7,20 @@ interface IRequest {
   phone: string;
 }
 
+@injectable()
 class CreatePlayerUseCase {
-  constructor(private playersRepository: IPlayersRepository) {}
+  constructor(
+    @inject("PlayersRepository") private playersRepository: IPlayersRepository
+  ) {}
 
-  execute({ name, phone }: IRequest): void {
-    const playerAlreadyExists = this.playersRepository.findByName(name);
+  async execute({ name, phone }: IRequest): Promise<void> {
+    const playerAlreadyExists = await this.playersRepository.findByName(name);
 
     if (playerAlreadyExists) {
       throw new Error("Player already exists");
     }
 
-    this.playersRepository.create({ name, phone });
+    await this.playersRepository.create({ name, phone });
   }
 }
 

@@ -1,16 +1,15 @@
 import { Router } from "express";
 
-import createPlayerController from "../modules/players/useCases/createPlayer";
-import listPlayersController from "../modules/players/useCases/listPlayers";
+import CreatePlayerController from "../modules/players/useCases/createPlayer/CreatePlayerController";
+import ListPlayersController from "../modules/players/useCases/listPlayers/ListPlayersController";
 
 const playersRoutes = Router();
 
-playersRoutes.post("/", (request, response) =>
-  createPlayerController.handle(request, response)
-);
+const createPlayerController = new CreatePlayerController();
+const listPlayersController = new ListPlayersController();
 
-playersRoutes.get("/", (request, response) =>
-  listPlayersController.handle(request, response)
-);
+playersRoutes.post("/", createPlayerController.handle);
+
+playersRoutes.get("/", listPlayersController.handle);
 
 export default playersRoutes;

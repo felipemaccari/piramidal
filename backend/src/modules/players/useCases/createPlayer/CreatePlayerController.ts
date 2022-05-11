@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import CreatePlayerUseCase from "./CreatePlayerUseCase";
 
 class CreatePlayerController {
-  constructor(public createPlayerUseCase: CreatePlayerUseCase) {}
-
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, phone } = request.body;
 
-    this.createPlayerUseCase.execute({ name, phone });
+    const createPlayersUseCase = container.resolve(CreatePlayerUseCase);
+
+    await createPlayersUseCase.execute({ name, phone });
 
     return response.status(201).send();
   }
