@@ -1,5 +1,7 @@
 import { container } from "tsyringe";
 
+import { IChallengesRepository } from "../../modules/challenges/repositories/IChallengesRepository";
+import ChallengesRepository from "../../modules/challenges/repositories/implementations/ChallengesRepository";
 import PlayersRepository from "../../modules/players/repositories/implementations/PlayersRepository";
 import { IPlayersRepository } from "../../modules/players/repositories/IPlayersRepository";
 import UsersRepository from "../../modules/users/repositories/implementations/UsersRepository";
@@ -13,4 +15,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IPlayersRepository>(
   "PlayersRepository",
   PlayersRepository
+);
+
+container.registerSingleton<IChallengesRepository>(
+  "ChallengesRepository",
+  ChallengesRepository
 );
