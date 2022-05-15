@@ -22,25 +22,7 @@ interface ICreateChallengeDTO {
 
 interface IChallengesRepository {
   list(): Promise<Challenge[]>;
-  create({
-    challengeePlayer,
-    challengedPlayer,
-    initialDate,
-    finalDate,
-    gameDate,
-    challengeeGiveup,
-    challengedGiveup,
-    refused,
-    expired,
-    challengeeFirstSet,
-    challengedFirstSet,
-    challengeeSecondSet,
-    challengedSecondSet,
-    challengeeTiebreak,
-    challengedTiebreak,
-    challengeePoints,
-    challengedPoints,
-  }: ICreateChallengeDTO): Promise<void>;
+  create(data: ICreateChallengeDTO): Promise<void>;
 }
 
 export { IChallengesRepository, ICreateChallengeDTO };

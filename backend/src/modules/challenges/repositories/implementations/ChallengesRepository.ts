@@ -20,44 +20,8 @@ class ChallengesRepository implements IChallengesRepository {
     return challenges;
   }
 
-  async create({
-    challengeePlayer,
-    challengedPlayer,
-    initialDate,
-    finalDate,
-    gameDate,
-    challengeeGiveup,
-    challengedGiveup,
-    refused,
-    expired,
-    challengeeFirstSet,
-    challengedFirstSet,
-    challengeeSecondSet,
-    challengedSecondSet,
-    challengeeTiebreak,
-    challengedTiebreak,
-    challengeePoints,
-    challengedPoints,
-  }: ICreateChallengeDTO): Promise<void> {
-    const challenge = await this.repository.create({
-      challengeePlayer,
-      challengedPlayer,
-      initialDate,
-      finalDate,
-      gameDate,
-      challengeeGiveup,
-      challengedGiveup,
-      refused,
-      expired,
-      challengeeFirstSet,
-      challengedFirstSet,
-      challengeeSecondSet,
-      challengedSecondSet,
-      challengeeTiebreak,
-      challengedTiebreak,
-      challengeePoints,
-      challengedPoints,
-    });
+  async create(data: ICreateChallengeDTO): Promise<void> {
+    const challenge = await this.repository.create(data);
 
     await this.repository.save(challenge);
   }

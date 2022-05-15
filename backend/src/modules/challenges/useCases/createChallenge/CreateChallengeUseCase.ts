@@ -12,44 +12,8 @@ class CreateChallengeUseCase {
     private challengesRepository: IChallengesRepository
   ) {}
 
-  async execute({
-    challengeePlayer,
-    challengedPlayer,
-    initialDate,
-    finalDate,
-    gameDate,
-    challengeeGiveup,
-    challengedGiveup,
-    refused,
-    expired,
-    challengeeFirstSet,
-    challengedFirstSet,
-    challengeeSecondSet,
-    challengedSecondSet,
-    challengeeTiebreak,
-    challengedTiebreak,
-    challengeePoints,
-    challengedPoints,
-  }: ICreateChallengeDTO): Promise<void> {
-    await this.challengesRepository.create({
-      challengeePlayer,
-      challengedPlayer,
-      initialDate,
-      finalDate,
-      gameDate,
-      challengeeGiveup,
-      challengedGiveup,
-      refused,
-      expired,
-      challengeeFirstSet,
-      challengedFirstSet,
-      challengeeSecondSet,
-      challengedSecondSet,
-      challengeeTiebreak,
-      challengedTiebreak,
-      challengeePoints,
-      challengedPoints,
-    });
+  async execute(data: ICreateChallengeDTO): Promise<void> {
+    await this.challengesRepository.create(data);
   }
 }
 
