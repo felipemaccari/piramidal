@@ -1,13 +1,13 @@
 import { container } from "tsyringe";
 
+import UsersRepository from "../../modules/accounts/repositories/implementations/UsersRepository";
+import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
 import { IChallengesRepository } from "../../modules/challenges/repositories/IChallengesRepository";
 import ChallengesRepository from "../../modules/challenges/repositories/implementations/ChallengesRepository";
 import PlayersRepository from "../../modules/players/repositories/implementations/PlayersRepository";
 import { IPlayersRepository } from "../../modules/players/repositories/IPlayersRepository";
 import TournamentsRepository from "../../modules/tournaments/repositories/implementations/TournamentsRepository";
 import ITournamentsRepository from "../../modules/tournaments/repositories/ITournamentsRepository";
-import UsersRepository from "../../modules/users/repositories/implementations/UsersRepository";
-import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
