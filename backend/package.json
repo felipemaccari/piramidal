@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
+    "typeorm-migration-create": "typeorm migration:create src/database/migrations/",
     "typeorm-migration-run": "typeorm-ts-node-esm migration:run -d src/database/databaseMigrationRun.ts"
   },
   "devDependencies": {
