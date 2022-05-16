@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import AppError from "../../../../errors/AppError";
 import { IPlayersRepository } from "../../repositories/IPlayersRepository";
 
 interface IRequest {
@@ -17,7 +18,7 @@ class CreatePlayerUseCase {
     const playerAlreadyExists = await this.playersRepository.findByName(name);
 
     if (playerAlreadyExists) {
-      throw new Error("Player already exists");
+      throw new AppError("Player already exists");
     }
 
     await this.playersRepository.create({ name, phone });
