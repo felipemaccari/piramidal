@@ -23,7 +23,7 @@ const ensureAuthenticated = async (
   try {
     const { sub } = verify(
       token,
-      "e8e3f59e398cbe289a516ebe0d203102"
+      "7c7fc106b1403da55bdcf64adadf9c24"
     ) as IPayload;
 
     const usersRepository = new UsersRepository();
