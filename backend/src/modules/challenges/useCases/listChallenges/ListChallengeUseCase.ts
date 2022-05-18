@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import Challenge from "../../entities/Challenge";
-import { IChallengesRepository } from "../../repositories/IChallengesRepository";
+import Challenge from "@modules/challenges/entities/Challenge";
+import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 
 @injectable()
 class ListChallengeUseCase {

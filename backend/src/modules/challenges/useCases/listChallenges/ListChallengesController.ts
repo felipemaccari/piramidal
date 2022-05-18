@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import ListChallengeUseCase from "./ListChallengeUseCase";
+import ListChallengeUseCase from "@modules/challenges/useCases/listChallenges/ListChallengeUseCase";
 
 class ListChallengesController {
   async handle(request: Request, response: Response): Promise<Response> {

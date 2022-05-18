@@ -1,9 +1,5 @@
-import Player from "../entities/Player";
-
-interface ICreatePlayerDTO {
-  name: string;
-  phone: string;
-}
+import ICreatePlayerDTO from "@modules/players/dtos/ICreatePlayerDTO";
+import Player from "@modules/players/entities/Player";
 
 interface IPlayersRepository {
   create({ name, phone }: ICreatePlayerDTO): Promise<void>;
@@ -11,4 +7,4 @@ interface IPlayersRepository {
   findByName(name: string): Promise<Player>;
 }
 
-export { IPlayersRepository, ICreatePlayerDTO };
+export { IPlayersRepository };

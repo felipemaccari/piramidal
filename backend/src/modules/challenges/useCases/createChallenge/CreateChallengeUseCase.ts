@@ -1,9 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import {
-  IChallengesRepository,
-  ICreateChallengeDTO,
-} from "../../repositories/IChallengesRepository";
+import ICreateChallengeDTO from "@modules/challenges/dtos/ICreateChallengeDTO";
+import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 
 @injectable()
 class CreateChallengeUseCase {

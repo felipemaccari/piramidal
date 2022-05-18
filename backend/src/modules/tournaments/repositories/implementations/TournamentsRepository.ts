@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../database";
-import Tournament from "../../entities/Tournament";
-import ITournamentsRepository from "../ITournamentsRepository";
+import AppDataSource from "@database/databaseMigrationRun";
+import Tournament from "@modules/tournaments/entities/Tournament";
+import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 class TournamentsRepository implements ITournamentsRepository {
   private repository: Repository<Tournament>;
@@ -27,7 +27,7 @@ class TournamentsRepository implements ITournamentsRepository {
     return tournaments;
   }
 
-  async findById({ id }): Promise<Tournament> {
+  async findById(id: string): Promise<Tournament> {
     const tournament = await this.repository.findOneBy({ id });
 
     return tournament;

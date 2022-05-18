@@ -1,5 +1,5 @@
-import TournamentsRepositoryInMemory from "../../../repositories/in-memory/TournamentsRepositoryInMemory";
-import CreateTournamentUseCase from "../CreateTournamentUseCase";
+import TournamentsRepositoryInMemory from "@modules/tournaments/repositories/in-memory/TournamentsRepositoryInMemory";
+import CreateTournamentUseCase from "@modules/tournaments/useCases/createTournament/CreateTournamentUseCase";
 
 let createTournamentUseCase: CreateTournamentUseCase;
 let tournamentsRepositoryInMemory: TournamentsRepositoryInMemory;

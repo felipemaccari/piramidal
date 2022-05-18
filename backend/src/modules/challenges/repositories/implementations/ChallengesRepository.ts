@@ -1,11 +1,9 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../database";
-import Challenge from "../../entities/Challenge";
-import {
-  IChallengesRepository,
-  ICreateChallengeDTO,
-} from "../IChallengesRepository";
+import AppDataSource from "@database/databaseMigrationRun";
+import ICreateChallengeDTO from "@modules/challenges/dtos/ICreateChallengeDTO";
+import Challenge from "@modules/challenges/entities/Challenge";
+import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 
 class ChallengesRepository implements IChallengesRepository {
   private repository: Repository<Challenge>;

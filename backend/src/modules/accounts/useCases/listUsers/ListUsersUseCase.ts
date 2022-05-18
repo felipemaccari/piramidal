@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import User from "../../entities/User";
-import UsersRepository from "../../repositories/implementations/UsersRepository";
+import User from "@modules/accounts/entities/User";
+import UsersRepository from "@modules/accounts/repositories/implementations/UsersRepository";
 
 @injectable()
 class ListUsersUseCase {

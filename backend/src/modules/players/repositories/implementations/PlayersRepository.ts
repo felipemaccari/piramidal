@@ -1,8 +1,9 @@
 import { Repository } from "typeorm";
 
-import { AppDataSource } from "../../../../database";
-import Player from "../../entities/Player";
-import { IPlayersRepository, ICreatePlayerDTO } from "../IPlayersRepository";
+import AppDataSource from "@database/databaseMigrationRun";
+import ICreatePlayerDTO from "@modules/players/dtos/ICreatePlayerDTO";
+import Player from "@modules/players/entities/Player";
+import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 
 class PlayersRepository implements IPlayersRepository {
   private repository: Repository<Player>;

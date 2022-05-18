@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import ListTournamentUseCase from "./ListTournamentUseCase";
+import ListTournamentUseCase from "@modules/tournaments/useCases/listTournament/ListTournamentUseCase";
 
 class ListTournamentController {
   async handle(request: Request, response: Response): Promise<Response> {

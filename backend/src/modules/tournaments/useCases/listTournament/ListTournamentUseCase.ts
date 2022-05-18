@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import Tournament from "../../entities/Tournament";
-import ITournamentsRepository from "../../repositories/ITournamentsRepository";
+import Tournament from "@modules/tournaments/entities/Tournament";
+import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 @injectable()
 class ListTournamentUseCase {

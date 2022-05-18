@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import CreatePlayerUseCase from "./CreatePlayerUseCase";
+import CreatePlayerUseCase from "@modules/players/useCases/createPlayer/CreatePlayerUseCase";
 
 class CreatePlayerController {
   async handle(request: Request, response: Response): Promise<Response> {

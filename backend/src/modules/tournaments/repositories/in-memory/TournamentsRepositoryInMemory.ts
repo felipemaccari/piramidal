@@ -1,5 +1,5 @@
-import Tournament from "../../entities/Tournament";
-import ITournamentsRepository from "../ITournamentsRepository";
+import Tournament from "@modules/tournaments/entities/Tournament";
+import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 class TournamentsRepositoryInMemory implements ITournamentsRepository {
   tournaments: Tournament[] = [];
@@ -9,9 +9,9 @@ class TournamentsRepositoryInMemory implements ITournamentsRepository {
     initialDate,
     finalDate,
   }: {
-    description: any;
-    initialDate: any;
-    finalDate: any;
+    description: string;
+    initialDate: Date;
+    finalDate: Date;
   }): Promise<void> {
     const tournament = new Tournament();
 
@@ -24,7 +24,7 @@ class TournamentsRepositoryInMemory implements ITournamentsRepository {
     return this.tournaments;
   }
 
-  async findById({ id }: { id: any }): Promise<Tournament> {
+  async findById(id: string): Promise<Tournament> {
     const tournament = this.tournaments.find(
       (tournament) => tournament.id === id
     );
