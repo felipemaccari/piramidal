@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import ensureAuthenticated from "../middlewares/ensureAuthenticated";
-import CreatePlayerController from "../modules/players/useCases/createPlayer/CreatePlayerController";
-import ListPlayersController from "../modules/players/useCases/listPlayers/ListPlayersController";
+import CreatePlayerController from "@modules/players/useCases/createPlayer/CreatePlayerController";
+import ListPlayersController from "@modules/players/useCases/listPlayers/ListPlayersController";
+import ensureAuthenticated from "@shared/infra/http/middlewares/ensureAuthenticated";
 
 const playersRoutes = Router();
 

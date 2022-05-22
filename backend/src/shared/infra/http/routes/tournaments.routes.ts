@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import ensureAuthenticated from "../middlewares/ensureAuthenticated";
-import CreateTournamentController from "../modules/tournaments/useCases/createTournament/CreateTournamentController";
-import ListTournamentController from "../modules/tournaments/useCases/listTournament/ListTournamentController";
+import CreateTournamentController from "@modules/tournaments/useCases/createTournament/CreateTournamentController";
+import ListTournamentController from "@modules/tournaments/useCases/listTournament/ListTournamentController";
+import ensureAuthenticated from "@shared/infra/http/middlewares/ensureAuthenticated";
 
 const tournamentsRoutes = Router();
 

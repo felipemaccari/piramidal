@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import Player from "../../infra/typeorm/entities/Player";
-import PlayersRepository from "../../repositories/implementations/PlayersRepository";
+import Player from "@modules/players/infra/typeorm/entities/Player";
+import PlayersRepository from "@modules/players/infra/typeorm/repositories/PlayersRepository";
 
 @injectable()
 class ListPlayersUseCase {

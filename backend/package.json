@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "typeorm-migration-create": "typeorm migration:create src/database/migrations/",
     "typeorm-migration-run": "typeorm-ts-node-esm migration:run -d src/database/databaseMigrationRun.ts",

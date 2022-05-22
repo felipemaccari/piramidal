@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
 
-import AppDataSource from "@database/databaseMigrationRun";
 import ICreateTournamentDTO from "@modules/tournaments/dtos/ICreateTournamentDTO";
 import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
+import AppDataSource from "@shared/infra/typeorm/databaseMigrationRun";
 
 class TournamentsRepository implements ITournamentsRepository {
   private repository: Repository<Tournament>;

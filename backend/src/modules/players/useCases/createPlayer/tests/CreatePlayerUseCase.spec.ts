@@ -1,6 +1,6 @@
-import AppError from "@errors/AppError";
 import PlayersRepositoryInMemory from "@modules/players/repositories/in-memory/PlayersRepositoryInMemory";
 import CreatePlayerUseCase from "@modules/players/useCases/createPlayer/CreatePlayerUseCase";
+import AppError from "@shared/errors/AppError";
 
 let createPlayerUseCase: CreatePlayerUseCase;
 let playersRepositoryInMemory: PlayersRepositoryInMemory;

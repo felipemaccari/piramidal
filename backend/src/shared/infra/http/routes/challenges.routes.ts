@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import ensureAuthenticated from "../middlewares/ensureAuthenticated";
-import CreateChallengeController from "../modules/challenges/useCases/createChallenge/CreateChallengeController";
-import ListChallengesController from "../modules/challenges/useCases/listChallenges/ListChallengesController";
+import CreateChallengeController from "@modules/challenges/useCases/createChallenge/CreateChallengeController";
+import ListChallengesController from "@modules/challenges/useCases/listChallenges/ListChallengesController";
+import ensureAuthenticated from "@shared/infra/http/middlewares/ensureAuthenticated";
 
 const challengesRoutes = Router();
 
