@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import ICreateTournamentDTO from "@modules/tournaments/dtos/ICreateTournamentDTO";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 @injectable()
@@ -9,7 +10,11 @@ class CreateTournamentUseCase {
     private tournamentsController: ITournamentsRepository
   ) {}
 
-  async execute({ description, initialDate, finalDate }): Promise<void> {
+  async execute({
+    description,
+    initialDate,
+    finalDate,
+  }: ICreateTournamentDTO): Promise<void> {
     const tournament = { description, initialDate, finalDate };
 
     this.tournamentsController.create(tournament);

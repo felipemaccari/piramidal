@@ -1,7 +1,8 @@
 import { Repository } from "typeorm";
 
 import AppDataSource from "@database/databaseMigrationRun";
-import Tournament from "@modules/tournaments/entities/Tournament";
+import ICreateTournamentDTO from "@modules/tournaments/dtos/ICreateTournamentDTO";
+import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 class TournamentsRepository implements ITournamentsRepository {
@@ -11,7 +12,11 @@ class TournamentsRepository implements ITournamentsRepository {
     this.repository = AppDataSource.getRepository(Tournament);
   }
 
-  async create({ description, initialDate, finalDate }): Promise<void> {
+  async create({
+    description,
+    initialDate,
+    finalDate,
+  }: ICreateTournamentDTO): Promise<void> {
     const tournament = await this.repository.create({
       description,
       initialDate,

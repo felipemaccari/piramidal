@@ -1,4 +1,5 @@
-import Tournament from "@modules/tournaments/entities/Tournament";
+import ICreateTournamentDTO from "@modules/tournaments/dtos/ICreateTournamentDTO";
+import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 class TournamentsRepositoryInMemory implements ITournamentsRepository {
@@ -8,11 +9,7 @@ class TournamentsRepositoryInMemory implements ITournamentsRepository {
     description,
     initialDate,
     finalDate,
-  }: {
-    description: string;
-    initialDate: Date;
-    finalDate: Date;
-  }): Promise<void> {
+  }: ICreateTournamentDTO): Promise<void> {
     const tournament = new Tournament();
 
     Object.assign(tournament, { description, initialDate, finalDate });

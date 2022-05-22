@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node -r tsconfig-paths/register --transpile-only src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "typeorm-migration-create": "typeorm migration:create src/database/migrations/",
     "typeorm-migration-run": "typeorm-ts-node-esm migration:run -d src/database/databaseMigrationRun.ts",
@@ -31,8 +31,7 @@
     "eslint-plugin-promise": "^5.2.0",
     "jest": "^28.1.0",
     "prettier": "^2.5.1",
-    "ts-jest": "^28.0.2",
-    "ts-node": "^1.1.8",
+    "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.2"
   },
@@ -51,6 +50,7 @@
     "pino-pretty": "^7.5.3",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.3.0",
+    "ts-jest": "^28.0.2",
     "tsyringe": "^4.6.0",
     "typeorm": "^0.3.6",
     "uuid": "^8.3.2"

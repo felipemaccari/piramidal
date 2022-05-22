@@ -1,5 +1,5 @@
 import ICreatePlayerDTO from "@modules/players/dtos/ICreatePlayerDTO";
-import Player from "@modules/players/entities/Player";
+import Player from "@modules/players/infra/typeorm/entities/Player";
 
 interface IPlayersRepository {
   create({ name, phone }: ICreatePlayerDTO): Promise<void>;

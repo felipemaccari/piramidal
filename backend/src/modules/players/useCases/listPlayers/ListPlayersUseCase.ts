@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import Player from "../../entities/Player";
+import Player from "../../infra/typeorm/entities/Player";
 import PlayersRepository from "../../repositories/implementations/PlayersRepository";
 
 @injectable()

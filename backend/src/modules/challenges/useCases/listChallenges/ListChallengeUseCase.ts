@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import Challenge from "@modules/challenges/entities/Challenge";
+import Challenge from "@modules/challenges/infra/typeorm/entities/Challenge";
 import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 
 @injectable()

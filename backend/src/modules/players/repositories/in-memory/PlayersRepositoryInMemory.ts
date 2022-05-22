@@ -1,5 +1,6 @@
-import Player from "../../entities/Player";
-import { ICreatePlayerDTO, IPlayersRepository } from "../IPlayersRepository";
+import ICreatePlayerDTO from "@modules/players/dtos/ICreatePlayerDTO";
+import Player from "@modules/players/infra/typeorm/entities/Player";
+import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 
 class PlayersRepositoryInMemory implements IPlayersRepository {
   players: Player[] = [];

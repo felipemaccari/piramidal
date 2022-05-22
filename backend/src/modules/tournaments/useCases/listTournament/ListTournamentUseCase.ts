@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import Tournament from "@modules/tournaments/entities/Tournament";
+import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 @injectable()
