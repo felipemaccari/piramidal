@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import ICreateChallengeDTO from "@modules/challenges/dtos/ICreateChallengeDTO";
 import Challenge from "@modules/challenges/infra/typeorm/entities/Challenge";
 import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
-import AppDataSource from "@shared/infra/typeorm/databaseMigrationRun";
+import AppDataSource from "@shared/infra/typeorm";
 
 class ChallengesRepository implements IChallengesRepository {
   private repository: Repository<Challenge>;
