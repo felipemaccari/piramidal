@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from "typeorm";
 
 export class CreateChallenges1652148286425 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -7,8 +12,6 @@ export class CreateChallenges1652148286425 implements MigrationInterface {
         name: "challenges",
         columns: [
           { name: "id", type: "uuid", isPrimary: true },
-          { name: "challengeePlayer", type: "Varchar" },
-          { name: "challengedPlayer", type: "Varchar" },
           { name: "initialDate", type: "timestamp" },
           { name: "finalDate", type: "timestamp" },
           { name: "gameDate", type: "timestamp" },
@@ -24,8 +27,45 @@ export class CreateChallenges1652148286425 implements MigrationInterface {
           { name: "challengedTiebreak", type: "integer" },
           { name: "challengeePoints", type: "integer" },
           { name: "challengedPoints", type: "integer" },
-          { name: "created_at", type: "timestamp", default: "now()" },
+          { name: "challengeePlayerID", type: "uuid" },
+          { name: "challengedPlayerID", type: "uuid" },
+          { name: "tournamentID", type: "uuid" },
+          { name: "createdAt", type: "timestamp", default: "now()" },
+          { name: "updatedAt", type: "timestamp" },
         ],
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      "challenges",
+      new TableForeignKey({
+        columnNames: ["tournamentID"],
+        referencedColumnNames: ["id"],
+        referencedTableName: "tournaments",
+        onDelete: "RESTRICT",
+        onUpdate: "RESTRICT",
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      "challenges",
+      new TableForeignKey({
+        columnNames: ["challengeePlayerID"],
+        referencedColumnNames: ["id"],
+        referencedTableName: "players",
+        onDelete: "RESTRICT",
+        onUpdate: "RESTRICT",
+      })
+    );
+
+    await queryRunner.createForeignKey(
+      "challenges",
+      new TableForeignKey({
+        columnNames: ["challengedPlayerID"],
+        referencedColumnNames: ["id"],
+        referencedTableName: "players",
+        onDelete: "RESTRICT",
+        onUpdate: "RESTRICT",
       })
     );
   }

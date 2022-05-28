@@ -10,7 +10,8 @@ export class CreateTournaments1652146000595 implements MigrationInterface {
           { name: "description", type: "Varchar" },
           { name: "initialDate", type: "timestamp" },
           { name: "finalDate", type: "timestamp" },
-          { name: "created_at", type: "timestamp", default: "now()" },
+          { name: "createdAt", type: "timestamp", default: "now()" },
+          { name: "updatedAt", type: "timestamp" },
         ],
       })
     );

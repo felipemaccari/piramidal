@@ -1,9 +1,15 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity("players")
 class Player {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   id?: string;
 
   @Column()
@@ -14,6 +20,9 @@ class Player {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   constructor() {
     if (!this.id) {

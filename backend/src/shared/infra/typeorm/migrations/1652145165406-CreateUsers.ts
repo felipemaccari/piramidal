@@ -10,7 +10,8 @@ export class CreateUsers1652145165406 implements MigrationInterface {
           { name: "name", type: "Varchar" },
           { name: "email", type: "Varchar" },
           { name: "password", type: "Varchar" },
-          { name: "created_at", type: "timestamp", default: "now()" },
+          { name: "createdAt", type: "timestamp", default: "now()" },
+          { name: "updatedAt", type: "timestamp" },
         ],
       })
     );

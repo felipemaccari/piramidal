@@ -1,16 +1,16 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity("challenges")
 class Challenge {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn("uuid")
   id?: string;
-
-  @Column()
-  challengeePlayer: string;
-
-  @Column()
-  challengedPlayer: string;
 
   @Column()
   initialDate: Date;
@@ -57,8 +57,20 @@ class Challenge {
   @Column()
   challengedPoints: number;
 
+  @Column()
+  challengeePlayerID: string;
+
+  @Column()
+  challengedPlayerID: string;
+
+  @Column()
+  tournamentID: string;
+
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   constructor() {
     if (!this.id) {

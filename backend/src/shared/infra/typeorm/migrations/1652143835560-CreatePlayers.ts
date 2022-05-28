@@ -9,7 +9,8 @@ export class CreatePlayers1652143835560 implements MigrationInterface {
           { name: "id", type: "uuid", isPrimary: true },
           { name: "name", type: "Varchar" },
           { name: "phone", type: "Varchar" },
-          { name: "created_at", type: "timestamp", default: "now()" },
+          { name: "createdAt", type: "timestamp", default: "now()" },
+          { name: "updatedAt", type: "timestamp" },
         ],
       })
     );

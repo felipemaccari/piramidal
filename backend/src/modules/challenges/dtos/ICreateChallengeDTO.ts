@@ -1,6 +1,4 @@
 interface ICreateChallengeDTO {
-  challengeePlayer: string;
-  challengedPlayer: string;
   initialDate: Date;
   finalDate: Date;
   gameDate: Date;
@@ -16,6 +14,9 @@ interface ICreateChallengeDTO {
   challengedTiebreak: number;
   challengeePoints: number;
   challengedPoints: number;
+  challengeePlayerID: string;
+  challengedPlayerID: string;
+  tournamentID: string;
 }
 
 export default ICreateChallengeDTO;
