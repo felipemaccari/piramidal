@@ -14,6 +14,9 @@ const raffleTournamentController = new RaffleTournamentController();
 tournamentsRoutes.use(ensureAuthenticated);
 tournamentsRoutes.post("/", createTournamentController.handle);
 tournamentsRoutes.get("/", listTournamentController.handle);
-tournamentsRoutes.post("/raffle", raffleTournamentController.handle);
+tournamentsRoutes.post(
+  "/:tournamentId/raffle",
+  raffleTournamentController.handle
+);
 
 export default tournamentsRoutes;
