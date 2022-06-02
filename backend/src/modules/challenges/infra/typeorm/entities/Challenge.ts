@@ -25,10 +25,10 @@ class Challenge {
   gameDate: Date;
 
   @Column()
-  challengeeGiveup: boolean;
+  originPlayerGiveup: boolean;
 
   @Column()
-  challengedGiveup: boolean;
+  destinationPlayerGiveup: boolean;
 
   @Column()
   refused: boolean;
@@ -37,34 +37,34 @@ class Challenge {
   expired: boolean;
 
   @Column()
-  challengeeFirstSet: number;
+  originPlayerFirstSet: number;
 
   @Column()
-  challengedFirstSet: number;
+  destinationPlayerFirstSet: number;
 
   @Column()
-  challengeeSecondSet: number;
+  originPlayerSecondSet: number;
 
   @Column()
-  challengedSecondSet: number;
+  destinationPlayerSecondSet: number;
 
   @Column()
-  challengeeTiebreak: number;
+  originPlayerTiebreak: number;
 
   @Column()
-  challengedTiebreak: number;
+  destinationPlayerTiebreak: number;
 
   @Column()
-  challengeePoints: number;
+  originPlayerPoints: number;
 
   @Column()
-  challengedPoints: number;
+  destinationPlayerPoints: number;
 
   @Column({ type: "uuid" })
-  challengeePlayerID: Player;
+  originPlayerPlayerID: Player;
 
   @Column({ type: "uuid" })
-  challengedPlayerID: Player;
+  destinationPlayerPlayerID: Player;
 
   @Column({ type: "uuid" })
   tournamentID: Tournament;

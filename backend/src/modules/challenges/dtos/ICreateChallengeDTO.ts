@@ -2,20 +2,20 @@ interface ICreateChallengeDTO {
   initialDate: Date;
   finalDate: Date;
   gameDate: Date;
-  challengeeGiveup: boolean;
-  challengedGiveup: boolean;
+  originPlayerGiveup: boolean;
+  DestinationPlayerGiveup: boolean;
   refused: boolean;
   expired: boolean;
-  challengeeFirstSet: number;
-  challengedFirstSet: number;
-  challengeeSecondSet: number;
-  challengedSecondSet: number;
-  challengeeTiebreak: number;
-  challengedTiebreak: number;
-  challengeePoints: number;
-  challengedPoints: number;
-  challengeePlayerID: string;
-  challengedPlayerID: string;
+  originPlayerFirstSet: number;
+  DestinationPlayerFirstSet: number;
+  originPlayerSecondSet: number;
+  DestinationPlayerSecondSet: number;
+  originPlayerTiebreak: number;
+  DestinationPlayerTiebreak: number;
+  originPlayerPoints: number;
+  DestinationPlayerPoints: number;
+  originPlayerPlayerID: string;
+  DestinationPlayerPlayerID: string;
   tournamentID: string;
 }
 
