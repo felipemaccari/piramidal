@@ -7,6 +7,9 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
+import Player from "@modules/players/infra/typeorm/entities/Player";
+import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
+
 @Entity("challenges")
 class Challenge {
   @PrimaryGeneratedColumn("uuid")
@@ -57,14 +60,14 @@ class Challenge {
   @Column()
   challengedPoints: number;
 
-  @Column()
-  challengeePlayerID: string;
+  @Column({ type: "uuid" })
+  challengeePlayerID: Player;
 
-  @Column()
-  challengedPlayerID: string;
+  @Column({ type: "uuid" })
+  challengedPlayerID: Player;
 
-  @Column()
-  tournamentID: string;
+  @Column({ type: "uuid" })
+  tournamentID: Tournament;
 
   @CreateDateColumn()
   createdAt: Date;
