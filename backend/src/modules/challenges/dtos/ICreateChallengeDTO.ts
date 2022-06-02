@@ -14,8 +14,8 @@ interface ICreateChallengeDTO {
   DestinationPlayerTiebreak: number;
   originPlayerPoints: number;
   DestinationPlayerPoints: number;
-  originPlayerPlayerID: string;
-  DestinationPlayerPlayerID: string;
+  originPlayerID: string;
+  DestinationPlayerID: string;
   tournamentID: string;
 }
 

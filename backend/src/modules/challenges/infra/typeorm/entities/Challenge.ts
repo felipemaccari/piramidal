@@ -7,9 +7,6 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-import Player from "@modules/players/infra/typeorm/entities/Player";
-import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
-
 @Entity("challenges")
 class Challenge {
   @PrimaryGeneratedColumn("uuid")
@@ -61,13 +58,13 @@ class Challenge {
   destinationPlayerPoints: number;
 
   @Column({ type: "uuid" })
-  originPlayerPlayerID: Player;
+  originPlayerID: string;
 
   @Column({ type: "uuid" })
-  destinationPlayerPlayerID: Player;
+  destinationPlayerID: string;
 
   @Column({ type: "uuid" })
-  tournamentID: Tournament;
+  tournamentID: string;
 
   @CreateDateColumn()
   createdAt: Date;
