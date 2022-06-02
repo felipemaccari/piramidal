@@ -15,7 +15,7 @@ const createUserController = new CreateUserController();
 const listUsersController = new ListUsersController();
 const updateUserAvatarController = new UpdateUserAvatarController();
 
-usersRoutes.use(ensureAuthenticated);
+// usersRoutes.use(ensureAuthenticated);
 usersRoutes.get("/", listUsersController.handle);
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.patch(

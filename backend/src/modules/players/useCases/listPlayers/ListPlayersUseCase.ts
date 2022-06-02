@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
 
 import Player from "@modules/players/infra/typeorm/entities/Player";
-import PlayersRepository from "@modules/players/infra/typeorm/repositories/PlayersRepository";
+import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 
 @injectable()
 class ListPlayersUseCase {
   constructor(
-    @inject("PlayersRepository") private playersRepository: PlayersRepository
+    @inject("PlayersRepository") private playersRepository: IPlayersRepository
   ) {}
 
   async execute(): Promise<Player[]> {
