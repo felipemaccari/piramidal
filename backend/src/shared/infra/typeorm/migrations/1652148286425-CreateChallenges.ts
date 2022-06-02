@@ -1,9 +1,4 @@
-import {
-  MigrationInterface,
-  QueryRunner,
-  Table,
-  TableForeignKey,
-} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateChallenges1652148286425 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -33,39 +28,6 @@ export class CreateChallenges1652148286425 implements MigrationInterface {
           { name: "createdAt", type: "timestamp", default: "now()" },
           { name: "updatedAt", type: "timestamp" },
         ],
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      "challenges",
-      new TableForeignKey({
-        columnNames: ["tournamentID"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "tournaments",
-        onDelete: "RESTRICT",
-        onUpdate: "RESTRICT",
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      "challenges",
-      new TableForeignKey({
-        columnNames: ["challengeePlayerID"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "players",
-        onDelete: "RESTRICT",
-        onUpdate: "RESTRICT",
-      })
-    );
-
-    await queryRunner.createForeignKey(
-      "challenges",
-      new TableForeignKey({
-        columnNames: ["challengedPlayerID"],
-        referencedColumnNames: ["id"],
-        referencedTableName: "players",
-        onDelete: "RESTRICT",
-        onUpdate: "RESTRICT",
       })
     );
   }
