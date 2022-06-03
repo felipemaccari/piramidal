@@ -3,7 +3,9 @@ import { container } from "tsyringe";
 import UsersRepository from "@modules/accounts/infra/typeorm/repositories/UsersRepository";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import ChallengesRepository from "@modules/challenges/infra/typeorm/repositories/ChallengesRepository";
+import ChallengesResultsRepository from "@modules/challenges/infra/typeorm/repositories/ChallengesResultsRepository";
 import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
+import { IChallengesResultsRepository } from "@modules/challenges/repositories/IChallengesResultsRepository";
 import PlayersRepository from "@modules/players/infra/typeorm/repositories/PlayersRepository";
 import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 import TournamentsRepository from "@modules/tournaments/infra/typeorm/repositories/TournamentsRepository";
@@ -27,4 +29,9 @@ container.registerSingleton<IChallengesRepository>(
 container.registerSingleton<ITournamentsRepository>(
   "TournamentsRepository",
   TournamentsRepository
+);
+
+container.registerSingleton<IChallengesResultsRepository>(
+  "ChallengesResultsRepository",
+  ChallengesResultsRepository
 );

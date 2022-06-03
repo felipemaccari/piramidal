@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity("challengeResults")
+@Entity("challengesResults")
 class ChallengeResults {
   @PrimaryGeneratedColumn("uuid")
   id?: string;
@@ -51,8 +51,8 @@ class ChallengeResults {
   @Column()
   destinationPlayerPoints: number;
 
-  @CreateDateColumn()
-  challengeID: Date;
+  @Column({ type: "uuid" })
+  challengeID: string;
 
   @CreateDateColumn()
   createdAt: Date;
