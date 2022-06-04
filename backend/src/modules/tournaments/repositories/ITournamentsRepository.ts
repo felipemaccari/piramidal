@@ -8,7 +8,7 @@ interface ITournamentsRepository {
     finalDate,
   }: ICreateTournamentDTO): Promise<void>;
   list(): Promise<Tournament[]>;
-  findById(id: string): Promise<Tournament>;
+  findByID(id: string): Promise<Tournament>;
 }
 
 export default ITournamentsRepository;

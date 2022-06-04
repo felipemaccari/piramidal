@@ -29,7 +29,7 @@ const ensureAuthenticated = async (
 
     const usersRepository = new UsersRepository();
 
-    const user = await usersRepository.findById(sub);
+    const user = await usersRepository.findByID(sub);
 
     if (!user) {
       throw new AppError("User does not exists", 401);

@@ -13,7 +13,7 @@ class ChallengesResultsRepository implements IChallengesResultsRepository {
     this.repository = AppDataSource.getRepository(ChallengeResults);
   }
 
-  listById(id: string): Promise<ChallengeResults> {
+  listByID(id: string): Promise<ChallengeResults> {
     const challengeResults = this.repository.findOneBy({ id });
 
     return challengeResults;
@@ -23,6 +23,14 @@ class ChallengesResultsRepository implements IChallengesResultsRepository {
     const challengeResults = await this.repository.create(data);
 
     await this.repository.save(challengeResults);
+  }
+
+  async listByChallengeID(challengeID: string): Promise<ChallengeResults> {
+    const challengeResults = await this.repository.findOneBy({
+      challengeID,
+    });
+
+    return challengeResults;
   }
 }
 

@@ -13,8 +13,8 @@ class RaffleTournamentUseCase {
     private tournamentsRepository: ITournamentsRepository
   ) {}
 
-  async execute(tournamentId: string): Promise<Player[]> {
-    const tournament = await this.tournamentsRepository.findById(tournamentId);
+  async execute(tournamentID: string): Promise<Player[]> {
+    const tournament = await this.tournamentsRepository.findByID(tournamentID);
 
     if (!tournament) {
       throw new AppError("Tournament not found");

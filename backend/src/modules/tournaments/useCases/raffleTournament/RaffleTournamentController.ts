@@ -5,11 +5,11 @@ import RaffleTournamentUseCase from "./RaffleTournamentUseCase";
 
 class RaffleTournamentController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { tournamentId } = request.params;
+    const { tournamentID } = request.params;
 
     const raffleTournamentUseCase = container.resolve(RaffleTournamentUseCase);
 
-    const raffledPlayers = await raffleTournamentUseCase.execute(tournamentId);
+    const raffledPlayers = await raffleTournamentUseCase.execute(tournamentID);
 
     return response.status(201).json(raffledPlayers);
   }

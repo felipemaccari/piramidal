@@ -32,7 +32,7 @@ class TournamentsRepository implements ITournamentsRepository {
     return tournaments;
   }
 
-  async findById(id: string): Promise<Tournament> {
+  async findByID(id: string): Promise<Tournament> {
     const tournament = await this.repository.findOneBy({ id });
 
     return tournament;

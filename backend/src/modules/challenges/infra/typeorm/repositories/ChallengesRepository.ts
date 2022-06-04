@@ -24,7 +24,7 @@ class ChallengesRepository implements IChallengesRepository {
     await this.repository.save(challenge);
   }
 
-  async findById(id: string): Promise<Challenge> {
+  async findByID(id: string): Promise<Challenge> {
     const challenge = await this.repository.findOneBy({ id });
 
     return challenge;

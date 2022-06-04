@@ -17,7 +17,7 @@ class CreateChallengeResultsUseCase {
   async execute(data: ICreateChallengeResultsDTO): Promise<void> {
     const { challengeID } = data;
 
-    const challengeExists = await this.challengeRepository.findById(
+    const challengeExists = await this.challengeRepository.findByID(
       challengeID
     );
 

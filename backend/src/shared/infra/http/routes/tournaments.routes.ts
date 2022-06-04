@@ -15,7 +15,7 @@ tournamentsRoutes.use(ensureAuthenticated);
 tournamentsRoutes.post("/", createTournamentController.handle);
 tournamentsRoutes.get("/", listTournamentController.handle);
 tournamentsRoutes.post(
-  "/:tournamentId/raffle",
+  "/:tournamentID/raffle",
   raffleTournamentController.handle
 );
 

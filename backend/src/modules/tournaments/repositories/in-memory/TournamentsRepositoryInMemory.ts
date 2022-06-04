@@ -21,7 +21,7 @@ class TournamentsRepositoryInMemory implements ITournamentsRepository {
     return this.tournaments;
   }
 
-  async findById(id: string): Promise<Tournament> {
+  async findByID(id: string): Promise<Tournament> {
     const tournament = this.tournaments.find(
       (tournament) => tournament.id === id
     );
