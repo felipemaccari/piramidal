@@ -5,11 +5,16 @@ import CreateTournamentUseCase from "@modules/tournaments/useCases/createTournam
 
 class CreateTournamentController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { description, initialDate, finalDate } = request.body;
+    const { description, initialDate, finalDate, players } = request.body;
 
     const createTournamentUseCase = container.resolve(CreateTournamentUseCase);
 
-    createTournamentUseCase.execute({ description, initialDate, finalDate });
+    createTournamentUseCase.execute({
+      description,
+      initialDate,
+      finalDate,
+      players,
+    });
 
     return response.status(201).send();
   }

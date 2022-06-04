@@ -16,14 +16,16 @@ class TournamentsRepository implements ITournamentsRepository {
     description,
     initialDate,
     finalDate,
-  }: ICreateTournamentDTO): Promise<void> {
+  }: ICreateTournamentDTO): Promise<Tournament> {
     const tournament = await this.repository.create({
       description,
       initialDate,
       finalDate,
     });
 
-    await this.repository.save(tournament);
+    const createdTournament = await this.repository.save(tournament);
+
+    return createdTournament;
   }
 
   async list(): Promise<Tournament[]> {

@@ -8,7 +8,9 @@ import { IChallengesRepository } from "@modules/challenges/repositories/IChallen
 import { IChallengesResultsRepository } from "@modules/challenges/repositories/IChallengesResultsRepository";
 import PlayersRepository from "@modules/players/infra/typeorm/repositories/PlayersRepository";
 import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
+import TournamentsPlayersRepository from "@modules/tournaments/infra/typeorm/repositories/TournamentsPlayersRepository";
 import TournamentsRepository from "@modules/tournaments/infra/typeorm/repositories/TournamentsRepository";
+import ITournamentsPlayersRepository from "@modules/tournaments/repositories/ITournamentsPlayersRepository";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 
 container.registerSingleton<IUsersRepository>(
@@ -34,4 +36,9 @@ container.registerSingleton<ITournamentsRepository>(
 container.registerSingleton<IChallengesResultsRepository>(
   "ChallengesResultsRepository",
   ChallengesResultsRepository
+);
+
+container.registerSingleton<ITournamentsPlayersRepository>(
+  "TournamentsPlayersRepository",
+  TournamentsPlayersRepository
 );

@@ -7,13 +7,13 @@ import {
 } from "typeorm";
 import { v4 as uuid } from "uuid";
 
-@Entity("tournamentsPositions")
-class TournamentPositions {
+@Entity("tournamentsPlayers")
+class TournamentPlayer {
   @PrimaryGeneratedColumn("uuid")
   id?: string;
 
   @Column()
-  position: string;
+  position: number;
 
   @Column({ type: "uuid" })
   playerID: Date;
@@ -34,4 +34,4 @@ class TournamentPositions {
   }
 }
 
-export default TournamentPositions;
+export default TournamentPlayer;
