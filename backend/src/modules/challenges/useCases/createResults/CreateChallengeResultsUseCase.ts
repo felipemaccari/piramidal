@@ -25,8 +25,6 @@ class CreateChallengeResultsUseCase {
       throw new AppError("Challenge does not exists");
     }
 
-    console.log("data", data);
-
     await this.challengeResultsRepository.create(data);
   }
 }

@@ -16,7 +16,10 @@ const listResultsByChallengeController = new ListResultsByChallengeController();
 challengesRoutes.use(ensureAuthenticated);
 challengesRoutes.post("/", createChallengeController.handle);
 challengesRoutes.get("/", listChallengesController.handle);
-challengesRoutes.post("/results", createChallengeResultsController.handle);
+challengesRoutes.post(
+  "/results/:challengeID",
+  createChallengeResultsController.handle
+);
 challengesRoutes.get(
   "/results/:challengeID",
   listResultsByChallengeController.handle
