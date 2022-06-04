@@ -13,16 +13,16 @@ class TournamentsPlayersRepository implements ITournamentsPlayersRepository {
     this.repository = AppDataSource.getRepository(TournamentPlayer);
   }
 
+  async findByTournamentID(tournamentID: string): Promise<TournamentPlayer[]> {
+    const tournamentPlayers = await this.repository.findBy({ tournamentID });
+
+    return tournamentPlayers;
+  }
+
   async create(data: ICreateTournamentPlayerDTO): Promise<void> {
     const tournamentPlayer = await this.repository.create(data);
 
     await this.repository.save(tournamentPlayer);
-  }
-
-  async list(): Promise<TournamentPlayer[]> {
-    const tournamentsPlayers = await this.repository.find();
-
-    return tournamentsPlayers;
   }
 }
 

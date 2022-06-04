@@ -3,7 +3,7 @@ import TournamentPlayer from "../infra/typeorm/entities/TournamentPlayer";
 
 interface ITournamentsPlayersRepository {
   create(data: ICreateTournamentPlayerDTO): Promise<void>;
-  list(): Promise<TournamentPlayer[]>;
+  findByTournamentID(tournamentID: string): Promise<TournamentPlayer[]>;
 }
 
 export default ITournamentsPlayersRepository;

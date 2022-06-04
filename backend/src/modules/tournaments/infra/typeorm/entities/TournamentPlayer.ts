@@ -19,7 +19,7 @@ class TournamentPlayer {
   playerID: Date;
 
   @Column({ type: "uuid" })
-  tournamentID: Date;
+  tournamentID: string;
 
   @CreateDateColumn()
   createdAt: Date;
