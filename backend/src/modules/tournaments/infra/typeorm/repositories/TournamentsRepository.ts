@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 
 import ICreateTournamentDTO from "@modules/tournaments/dtos/ICreateTournamentDTO";
+import IEditTournamentDTO from "@modules/tournaments/dtos/IEditTournamentDTO";
 import Tournament from "@modules/tournaments/infra/typeorm/entities/Tournament";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 import AppDataSource from "@shared/infra/typeorm";
@@ -38,6 +39,23 @@ class TournamentsRepository implements ITournamentsRepository {
     const tournament = await this.repository.findOneBy({ id });
 
     return tournament;
+  }
+
+  async edit({
+    description,
+    initialDate,
+    finalDate,
+    active,
+    finished,
+    tournamentID,
+  }: IEditTournamentDTO): Promise<void> {
+    await this.repository.update(tournamentID, {
+      description,
+      initialDate,
+      finalDate,
+      active,
+      finished,
+    });
   }
 }
 

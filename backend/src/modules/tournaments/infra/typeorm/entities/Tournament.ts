@@ -21,6 +21,12 @@ class Tournament {
   @Column()
   finalDate: Date;
 
+  @Column({ default: true })
+  active: boolean;
+
+  @Column({ default: false })
+  finished: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
