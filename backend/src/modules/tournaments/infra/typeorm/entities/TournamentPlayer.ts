@@ -16,7 +16,7 @@ class TournamentPlayer {
   position: number;
 
   @Column({ type: "uuid" })
-  playerID: Date;
+  playerID: string;
 
   @Column({ type: "uuid" })
   tournamentID: string;
