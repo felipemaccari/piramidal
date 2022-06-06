@@ -5,6 +5,7 @@ interface IPlayersRepository {
   create({ name, phone }: ICreatePlayerDTO): Promise<void>;
   list(): Promise<Player[]>;
   findByName(name: string): Promise<Player>;
+  findByID(id: string): Promise<Player>;
 }
 
 export { IPlayersRepository };

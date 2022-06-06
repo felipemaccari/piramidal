@@ -1,6 +1,6 @@
 interface ICreateTournamentPlayerDTO {
   playerID: string;
-  position: number;
+  position?: number;
   tournamentID: string;
 }
 

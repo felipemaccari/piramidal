@@ -29,6 +29,12 @@ class PlayersRepository implements IPlayersRepository {
 
     return player;
   }
+
+  async findByID(id: string): Promise<Player> {
+    const player = await this.repository.findOneBy({ id });
+
+    return player;
+  }
 }
 
 export default PlayersRepository;
