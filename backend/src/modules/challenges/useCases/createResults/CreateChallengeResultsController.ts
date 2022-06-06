@@ -13,7 +13,7 @@ class CreateChallengeResultsController {
       CreateChallengeResultsUseCase
     );
 
-    createChallengeResultsUseCase.execute({ ...data, challengeID });
+    await createChallengeResultsUseCase.execute({ ...data, challengeID });
 
     return response.status(201).send();
   }

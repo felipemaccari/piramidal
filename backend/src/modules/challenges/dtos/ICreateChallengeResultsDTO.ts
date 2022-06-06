@@ -10,9 +10,9 @@ interface ICreateChallengeResultsDTO {
   destinationPlayerSecondSet: number;
   originPlayerTiebreak: number;
   destinationPlayerTiebreak: number;
-  originPlayerPoints: number;
-  destinationPlayerPoints: number;
   challengeID: string;
+  originPlayerPoints?: number;
+  destinationPlayerPoints?: number;
 }
 
 export default ICreateChallengeResultsDTO;

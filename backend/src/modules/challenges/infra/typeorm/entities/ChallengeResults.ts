@@ -2,10 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuid } from "uuid";
+
+import Challenge from "./Challenge";
 
 @Entity("challengesResults")
 class ChallengeResults {
@@ -51,8 +55,9 @@ class ChallengeResults {
   @Column()
   destinationPlayerPoints: number;
 
-  @Column({ type: "uuid" })
-  challengeID: string;
+  @OneToOne(() => Challenge)
+  @JoinColumn()
+  challengeID: Challenge;
 
   @CreateDateColumn()
   createdAt: Date;

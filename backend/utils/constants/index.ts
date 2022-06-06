@@ -1,0 +1,6 @@
+export const PLAYER_POINTS_TWO_NOTHING = 40;
+export const PLAYER_POINTS_NOTHING_TWO = 10;
+export const PLAYER_POINTS_TWO_ONE = 30;
+export const PLAYER_POINTS_ONE_TWO = 20;
+export const EXPIRED_GAME_POINTS = -50;
+export const GUIVEN_UP_EXCEED_GAME_POINTS = -50;
