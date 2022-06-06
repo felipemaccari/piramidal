@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 
 import ICreateTournamentPlayerDTO from "@modules/tournaments/dtos/ICreateTournamentPlayerDTO";
+import IEditTournamentPlayerDTO from "@modules/tournaments/dtos/IEditTournamentPlayerDTO";
 import ITournamentsPlayersRepository from "@modules/tournaments/repositories/ITournamentsPlayersRepository";
 import AppDataSource from "@shared/infra/typeorm";
 
@@ -11,6 +12,16 @@ class TournamentsPlayersRepository implements ITournamentsPlayersRepository {
 
   constructor() {
     this.repository = AppDataSource.getRepository(TournamentPlayer);
+  }
+
+  async findTournamentPlayerByID(id: string): Promise<TournamentPlayer> {
+    const tournamentPlayer = await this.repository.findOneBy({ id });
+
+    return tournamentPlayer;
+  }
+
+  async editTournamentPlayer(player: IEditTournamentPlayerDTO): Promise<void> {
+    await this.repository.update(player.id, player);
   }
 
   async findByTournamentID(tournamentID: string): Promise<TournamentPlayer[]> {

@@ -15,6 +15,9 @@ class TournamentPlayer {
   @Column()
   position: number;
 
+  @Column({ type: "boolean", default: true })
+  activeOnTournament: boolean;
+
   @Column({ type: "uuid" })
   playerID: string;
 

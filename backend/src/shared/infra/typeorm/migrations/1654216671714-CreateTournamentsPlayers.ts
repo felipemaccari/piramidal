@@ -10,6 +10,7 @@ export class CreateTournamentsPlayers1654216671714
         columns: [
           { name: "id", type: "uuid", isPrimary: true },
           { name: "position", type: "integer" },
+          { name: "activeOnTournament", type: "boolean", default: true },
           { name: "playerID", type: "uuid" },
           { name: "tournamentID", type: "uuid" },
           { name: "createdAt", type: "timestamp", default: "now()" },
