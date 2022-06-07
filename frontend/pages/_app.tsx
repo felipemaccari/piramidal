@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const colors = {
@@ -12,10 +14,14 @@ const colors = {
 const theme = extendTheme({ colors });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient();
+
   return (
-    <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 
