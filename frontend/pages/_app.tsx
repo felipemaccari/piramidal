@@ -1,28 +1,16 @@
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app'
 
-import { QueryClient, QueryClientProvider } from "react-query";
+import { NextPageWithLayout } from 'types/page'
 
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import '../styles/globals.css'
 
-const colors = {
-  primary: "blue",
-  secondary: "green",
-  grey: "#ccc",
-  black: "#111",
-};
-
-const theme = extendTheme({ colors });
-
-function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </QueryClientProvider>
-  );
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
 }
 
-export default MyApp;
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? (page => page)
+
+  return getLayout(<Component {...pageProps} />)
+}
