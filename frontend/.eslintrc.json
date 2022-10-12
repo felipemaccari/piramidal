@@ -9,7 +9,7 @@
     "plugin:react/recommended",
     "standard"
   ],
-  "globals": { "React": "readonly" },
+  "globals": { "React": "readonly", "JSX": true },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,6 +21,7 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "space-before-function-paren": "off",
-    "default-param-last": "error"
+    "default-param-last": "error",
+    "multiline-ternary": "off"
   }
 }
