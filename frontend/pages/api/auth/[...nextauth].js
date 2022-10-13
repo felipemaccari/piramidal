@@ -15,7 +15,7 @@ export default NextAuth({
         })
 
         if (user.data.user) {
-          return user.data.user
+          return { ...user.data.user, token: user.data.token }
         } else {
           return null
         }

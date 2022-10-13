@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import styled from '@emotion/styled'
 
 import {
+  Box,
   Button,
   Flex,
   FormControl,
@@ -48,9 +49,11 @@ const Home: NextPageWithLayout = () => {
         duration: 4000,
         isClosable: true
       })
+
+      return
     }
 
-    if (res?.url) router.push('/admin')
+    router.replace('/')
   }
 
   return (
@@ -62,12 +65,14 @@ const Home: NextPageWithLayout = () => {
       direction="column"
       px="40%"
     >
-      <Image
-        src={piramidal}
-        alt="Logo do sistema Piramidal"
-        width={169}
-        height={150}
-      />
+      <Box>
+        <Image
+          src={piramidal}
+          alt="Logo do sistema Piramidal"
+          width={169}
+          height={150}
+        />
+      </Box>
 
       <StyledForm onSubmit={handleSubmit(handleSignIn)}>
         <FormControl mt="40px">

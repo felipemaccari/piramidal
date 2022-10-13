@@ -1,1 +1,1 @@
-export { default } from "./Pyramid";
+export { default } from './Pyramid'

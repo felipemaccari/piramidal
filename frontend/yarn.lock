@@ -263,6 +263,13 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.2"
 
+"@chakra-ui/icons@^2.0.11":
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.11.tgz#3faf53c499c7c61c65b6e5ff4b0933f48b9ba416"
+  integrity sha512-WjxrFMt9hHpuZlnBh4fhtGOkIVlwYwHNmwq4sJGxYWlg8UnEhVJMoOojheJDy/d3Gp9+ApetlK3vt8fV/rZamg==
+  dependencies:
+    "@chakra-ui/icon" "3.0.11"
+
 "@chakra-ui/image@2.0.11":
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.0.11.tgz#eb880ecd2fce47f22ef50bbbba66cbb027c0304c"
@@ -1320,6 +1327,19 @@
   integrity sha512-6JrF+fdUK2zbGpJIlN7G3v966PQjyx/dPt1T9km2wj+EUBqgrxCk3uX4Kct16MIm9gGxfKRcfax2hVf5jvlTzA==
   dependencies:
     tslib "^2.4.0"
+
+"@tanstack/query-core@4.10.3":
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.10.3.tgz#a6477bab9ed1ae4561ca0a59ae06f8c615c692b7"
+  integrity sha512-+ME02sUmBfx3Pjd+0XtEthK8/4rVMD2jcxvnW9DSgFONpKtpjzfRzjY4ykzpDw1QEo2eoPvl7NS8J5mNI199aA==
+
+"@tanstack/react-query@^4.10.3":
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.10.3.tgz#294deefa0fb6ada88bc4631d346ef5d5551c5443"
+  integrity sha512-4OEJjkcsCTmG3ui7RjsVzsXerWQvInTe95CBKFyOV/GchMUlNztoFnnYmlMhX7hLUqJMhbG9l7M507V7+xU8Hw==
+  dependencies:
+    "@tanstack/query-core" "4.10.3"
+    use-sync-external-store "^1.2.0"
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
@@ -3629,6 +3649,11 @@ react-hook-form@^7.37.0:
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.37.0.tgz#4d1738f092d3d8a3ade34ee892d97350b1032b19"
   integrity sha512-6NFTxsnw+EXSpNNvLr5nFMjPdYKRryQcelTHg7zwBB6vAzfPIcZq4AExP4heVlwdzntepQgwiOQW4z7Mr99Lsg==
 
+react-icons@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"
+  integrity sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -4169,7 +4194,7 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-sync-external-store@1.2.0:
+use-sync-external-store@1.2.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==

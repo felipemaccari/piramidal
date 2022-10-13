@@ -1,5 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
+type ProviderProps = {
+  children: JSX.Element
+}
+
 const colors = {
   primary: '#FF731D',
   secondary: '#1746A2',
@@ -7,9 +11,17 @@ const colors = {
   blue: '#5F9DF7'
 }
 
-const theme = extendTheme({ colors })
+const styles = {
+  global: {
+    '*': {
+      fontFamily: "'Work Sans', sans-serif"
+    }
+  }
+}
 
-const StylesProvider = ({ children }: any) => {
+const theme = extendTheme({ colors, styles })
+
+const StylesProvider = ({ children }: ProviderProps) => {
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>
 }
 

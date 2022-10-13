@@ -1,82 +1,47 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { useQueryTournamentPlayers } from 'service/tournaments'
 
-const playersList = [
-  { name: 'Adriana Manarin' },
-  { name: 'Adriano Cassio' },
-  { name: 'Álvaro Maciel' },
-  { name: 'Álvaro Piccinin' },
-  { name: 'André Babinski' },
-  { name: 'André Philipsen' },
-  { name: 'Andrei' },
-  { name: 'Augusto' },
-  { name: 'Belmar' },
-  { name: 'Betão' },
-  { name: 'Cassiano' },
-  { name: 'Chicoski' },
-  { name: 'Cleverton' },
-  { name: 'Cobra' },
-  { name: 'Dayane Rita' },
-  { name: 'Diego Bitdinger' },
-  { name: 'Diego Machado' },
-  { name: 'Eduardo Tonet' },
-  { name: 'Elisandro' },
-  { name: 'Emerson Polzin' },
-  { name: 'Evandro Juttel' },
-  { name: 'Gislaine' },
-  { name: 'Ivan Fantinel' },
-  { name: 'Ivanildo' },
-  { name: 'Iyoran' },
-  { name: 'Jeanrie' },
-  { name: 'Luciano' },
-  { name: 'Luiz Henrique' },
-  { name: 'Lula' },
-  { name: 'Maccari' },
-  { name: 'Magro' },
-  { name: 'Marcelo' },
-  { name: 'Marcos Sato' },
-  { name: 'Marlon Cherobin' },
-  { name: 'Matheus Nichetti' },
-  { name: 'Molon' },
-  { name: 'Neto' },
-  { name: 'Peroni' },
-  { name: 'Pila' },
-  { name: 'Processo' },
-  { name: 'Rafael Bellé' },
-  { name: 'Rafael Strapasson' },
-  { name: 'Reis' },
-  { name: 'Robson' },
-  { name: 'Ronaldo' },
-  { name: 'Samuel' },
-  { name: 'Sandro' },
-  { name: 'Sergio Henrique' },
-  { name: 'Tainã' },
-  { name: 'Urso' },
-  { name: 'Vivan' },
-  { name: 'Wellington' }
-]
+type PlayersProps = {
+  name: string
+}
+type PlayersListProps = Array<PlayersProps>
+type TournamentProps = {
+  id: string
+}
+type PyramidProps = {
+  tournamentID: Array<TournamentProps>
+}
 
-const Pyramid = () => {
-  const [playerLines, setPlayerLines] = useState([])
+const Pyramid = ({ tournamentID }: PyramidProps) => {
+  const [playerLines, setPlayerLines] = useState<PlayersListProps[]>([])
+
+  const { data = [], isLoading } = useQueryTournamentPlayers(tournamentID[0].id)
 
   useEffect(() => {
-    let mouting = []
+    if (data) {
+      let pyramidItems: PlayersListProps[] = []
 
-    let var1Index = 0
-    let var2Quantidade = 1
-    let lineNumber = 2
+      let countIterator = 0
+      let quantity = 1
+      let playerPerLine = 2
 
-    while (var1Index < playersList.length) {
-      mouting = [...mouting, playersList.slice(var1Index, var2Quantidade)]
+      while (countIterator < data.length) {
+        pyramidItems = [...pyramidItems, data.slice(countIterator, quantity)]
 
-      var1Index = var2Quantidade
-      var2Quantidade = var2Quantidade + lineNumber
-      lineNumber = lineNumber + 2
+        countIterator = quantity
+        quantity = quantity + playerPerLine
+        playerPerLine = playerPerLine + 2
+      }
+
+      setPlayerLines(pyramidItems)
     }
+  }, [data])
 
-    setPlayerLines(mouting)
-  }, [])
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <Flex direction="column">
@@ -84,12 +49,22 @@ const Pyramid = () => {
         <Flex key={index} justify="center">
           {player.map((pl, index) => (
             <Flex
+              mb="-1px"
+              mr="-1px"
               key={index}
               border="1px solid #ccc"
+              borderRadius="4px"
               justify="center"
-              width="100px"
+              width="170px"
               align="center"
-              height="100px"
+              height="50px"
+              background="white"
+              _hover={{
+                background: '#eee',
+                cursor: 'pointer',
+                transition: ' transform 300ms',
+                transform: 'translateY(-2px)'
+              }}
             >
               <Text textAlign="center">{pl.name}</Text>
             </Flex>
