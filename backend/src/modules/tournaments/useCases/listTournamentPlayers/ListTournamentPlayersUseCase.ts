@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 import TournamentPlayer from "@modules/tournaments/infra/typeorm/entities/TournamentPlayer";
 import ITournamentsPlayersRepository from "@modules/tournaments/repositories/ITournamentsPlayersRepository";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
@@ -11,7 +12,9 @@ class ListTournamentPlayersUseCase {
     @inject("TournamentsPlayersRepository")
     private tournamentsPlayersRepository: ITournamentsPlayersRepository,
     @inject("TournamentsRepository")
-    private tournamentsRepository: ITournamentsRepository
+    private tournamentsRepository: ITournamentsRepository,
+    @inject("PlayersRepository")
+    private playersRepository: IPlayersRepository
   ) {}
 
   async execute(tournamentID: string): Promise<TournamentPlayer[]> {
@@ -25,8 +28,17 @@ class ListTournamentPlayersUseCase {
 
     const tournamentPlayers =
       await this.tournamentsPlayersRepository.findByTournamentID(tournamentID);
+    const players = await this.playersRepository.list();
 
-    return tournamentPlayers;
+    const fullTournamentPlayers = tournamentPlayers.map((tournamentPlayer) => {
+      const playerInformation = players.find(
+        (player) => player.id === tournamentPlayer.playerID
+      );
+
+      return { ...tournamentPlayer, ...playerInformation };
+    });
+
+    return fullTournamentPlayers;
   }
 }
 

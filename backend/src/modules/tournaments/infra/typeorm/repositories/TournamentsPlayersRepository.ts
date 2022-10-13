@@ -1,5 +1,6 @@
-import { Repository } from "typeorm";
+import { createQueryBuilder, Repository } from "typeorm";
 
+import Player from "@modules/players/infra/typeorm/entities/Player";
 import ICreateTournamentPlayerDTO from "@modules/tournaments/dtos/ICreateTournamentPlayerDTO";
 import IEditTournamentPlayerDTO from "@modules/tournaments/dtos/IEditTournamentPlayerDTO";
 import ITournamentsPlayersRepository from "@modules/tournaments/repositories/ITournamentsPlayersRepository";
