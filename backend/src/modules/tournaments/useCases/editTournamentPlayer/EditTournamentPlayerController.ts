@@ -6,7 +6,7 @@ import EditTournamentPlayerUseCase from "./EditTournamentPlayerUseCase";
 class EditTournamentPlayerController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { tournamentPlayerID } = request.params;
-    const { activeOnTournament } = request.body;
+    const { activeOnTournament, position } = request.body;
 
     const editTournamentPlayerUseCase = container.resolve(
       EditTournamentPlayerUseCase
@@ -15,6 +15,7 @@ class EditTournamentPlayerController {
     await editTournamentPlayerUseCase.execute({
       id: tournamentPlayerID,
       activeOnTournament,
+      position,
     });
 
     return response.send();
