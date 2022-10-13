@@ -19,23 +19,32 @@ const listTournamentController = new ListTournamentController();
 const listTournamentPlayersController = new ListTournamentPlayersController();
 const raffleTournamentController = new RaffleTournamentController();
 
-tournamentsRoutes.use(ensureAuthenticated);
-
-tournamentsRoutes.post("/", createTournamentController.handle);
+tournamentsRoutes.post(
+  "/",
+  ensureAuthenticated,
+  createTournamentController.handle
+);
 tournamentsRoutes.post(
   "/:tournamentID/raffle",
+  ensureAuthenticated,
   raffleTournamentController.handle
 );
 tournamentsRoutes.post(
   "/player/:tournamentID",
+  ensureAuthenticated,
   createTournamentPlayerController.handle
 );
 
 tournamentsRoutes.get("/", listTournamentController.handle);
 tournamentsRoutes.get("/:tournamentID", listTournamentPlayersController.handle);
-tournamentsRoutes.put("/:tournamentID", editTournamentController.handle);
+tournamentsRoutes.put(
+  "/:tournamentID",
+  ensureAuthenticated,
+  editTournamentController.handle
+);
 tournamentsRoutes.put(
   "/player/:tournamentPlayerID",
+  ensureAuthenticated,
   editTournamentPlayerController.handle
 );
 
