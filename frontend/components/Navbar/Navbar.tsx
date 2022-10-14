@@ -5,13 +5,14 @@ import { useSession } from 'next-auth/react'
 
 import { Button, Flex, Link } from '@chakra-ui/react'
 import NavbarAvatarMenu from './NavbarAvatarMenu'
-import NavbarOptions from './NavbarOptions'
 
 const Navbar = () => {
   const session = useSession()
 
   return (
     <Flex
+      position="sticky"
+      width="100%"
       height="70px"
       boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
       align="center"
@@ -25,8 +26,6 @@ const Navbar = () => {
           height={50}
           width={195}
         />
-
-        <NavbarOptions />
       </Flex>
 
       {!session.data && session.status !== 'loading' ? (

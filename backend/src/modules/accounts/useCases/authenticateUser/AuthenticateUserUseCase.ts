@@ -14,8 +14,8 @@ interface IResponse {
   user: {
     name: string;
     email: string;
+    token: string;
   };
-  token: string;
 }
 
 @injectable()
@@ -43,12 +43,14 @@ class AuthenticateUserUseCase {
     });
 
     const session: IResponse = {
-      token,
       user: {
         name: user.name,
         email: user.email,
+        token,
       },
     };
+
+    console.log("session", token);
 
     return session;
   }

@@ -14,8 +14,8 @@ export default NextAuth({
           password: credentials.password
         })
 
-        if (user.data.user) {
-          return { ...user.data.user, token: user.data.token }
+        if (user) {
+          return user.data.user
         } else {
           return null
         }
@@ -25,16 +25,17 @@ export default NextAuth({
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
-        token.id = user.id
+        token.accessToken = user.token
       }
 
       return token
     },
-    session: ({ session, token }) => {
+    session: ({ session, user, token }) => {
       if (token) {
         session.id = token.id
       }
-      return session
+
+      return { ...session, token: token.accessToken }
     }
   },
   secret: 'jwttoken',

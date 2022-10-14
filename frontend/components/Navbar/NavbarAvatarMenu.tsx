@@ -23,7 +23,7 @@ const NavbarAvatarMenu = () => {
           transform: 'translateY(-2px)'
         }}
       >
-        <Avatar name={session?.data?.user?.name || ''} />
+        <Avatar name={session?.data?.user?.name || ''} background="blue" />
       </MenuButton>
 
       <MenuList>

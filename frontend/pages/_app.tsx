@@ -2,12 +2,13 @@ import { useEffect } from 'react'
 
 import type { AppProps } from 'next/app'
 
-import { SessionProvider, signIn, useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 import Providers from 'providers'
 import { NextPageWithLayout } from 'types/page'
 
-import 'service'
+import MainLayout from 'layouts/MainLayout'
+import 'service/index'
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout & { auth?: boolean }
@@ -20,8 +21,8 @@ export default function MyApp({
   const getLayout = Component.getLayout ?? (page => page)
 
   return getLayout(
-    <SessionProvider session={session}>
-      <Providers pageProps={pageProps}>
+    <Providers pageProps={pageProps} session={session}>
+      <MainLayout>
         {Component.auth ? (
           <Auth>
             <Component {...pageProps} />
@@ -29,8 +30,8 @@ export default function MyApp({
         ) : (
           <Component {...pageProps} />
         )}
-      </Providers>
-    </SessionProvider>
+      </MainLayout>
+    </Providers>
   )
 }
 

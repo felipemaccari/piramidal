@@ -1,16 +1,20 @@
+import AuthProvider from './AuthProvider'
 import StylesProvider from './StylesProvider'
 import TanStackQuery from './TanStackQuery'
 
 type ProviderProps = {
   children: JSX.Element
   pageProps: any
+  session: any
 }
 
-const Providers = ({ children, pageProps }: ProviderProps) => {
+const Providers = ({ children, pageProps, session }: ProviderProps) => {
   return (
-    <TanStackQuery pageProps={pageProps}>
-      <StylesProvider>{children}</StylesProvider>
-    </TanStackQuery>
+    <StylesProvider>
+      <AuthProvider session={session}>
+        <TanStackQuery pageProps={pageProps}>{children}</TanStackQuery>
+      </AuthProvider>
+    </StylesProvider>
   )
 }
 

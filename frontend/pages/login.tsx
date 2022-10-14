@@ -57,14 +57,7 @@ const Home: NextPageWithLayout = () => {
   }
 
   return (
-    <Flex
-      height="100vh"
-      width="100%"
-      justify="center"
-      align="center"
-      direction="column"
-      px="40%"
-    >
+    <Flex width="100%" justify="center" align="center" direction="column">
       <Box>
         <Image
           src={piramidal}
@@ -75,7 +68,7 @@ const Home: NextPageWithLayout = () => {
       </Box>
 
       <StyledForm onSubmit={handleSubmit(handleSignIn)}>
-        <FormControl mt="40px">
+        <FormControl mt="40px" maxW="500px">
           <FormLabel>Seu email</FormLabel>
           <Input type="email" {...register('email')} />
         </FormControl>
