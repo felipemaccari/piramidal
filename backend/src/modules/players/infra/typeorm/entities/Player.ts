@@ -18,6 +18,9 @@ class Player {
   @Column()
   phone: string;
 
+  @Column()
+  active: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 

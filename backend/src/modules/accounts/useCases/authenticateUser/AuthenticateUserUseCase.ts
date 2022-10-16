@@ -50,8 +50,6 @@ class AuthenticateUserUseCase {
       },
     };
 
-    console.log("session", token);
-
     return session;
   }
 }

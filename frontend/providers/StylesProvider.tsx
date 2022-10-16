@@ -12,15 +12,7 @@ const colors = {
   gray: '#424242'
 }
 
-const styles = {
-  global: {
-    '*': {
-      fontFamily: "'Work Sans', sans-serif"
-    }
-  }
-}
-
-const theme = extendTheme({ colors, styles })
+const theme = extendTheme({ colors })
 
 const StylesProvider = ({ children }: ProviderProps) => {
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>

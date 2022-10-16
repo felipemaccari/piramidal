@@ -40,7 +40,7 @@ const LayoutPlayersAddPlayer = () => {
   const { mutate, isLoading } = useMutationAddPlayer({
     onSuccess: () => {
       toast({
-        title: `Novo jogador incluído com sucesso`,
+        title: 'Novo jogador incluído com sucesso',
         status: 'success',
         duration: 4000,
         isClosable: true

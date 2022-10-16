@@ -2,10 +2,12 @@ import NextLink from 'next/link'
 
 import { AddIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Link, List, ListItem, Text } from '@chakra-ui/react'
-import { AiOutlineTrophy, AiOutlineUser } from 'react-icons/ai'
+import { useSession } from 'next-auth/react'
+import { AiOutlineHome, AiOutlineTrophy, AiOutlineUser } from 'react-icons/ai'
 import { IoTennisballOutline } from 'react-icons/io5'
 
 const sidebarOptions = [
+  { name: 'Torneio atual', icon: <AiOutlineHome size={25} />, link: '/' },
   { name: 'Jogadores', icon: <AiOutlineUser size={25} />, link: '/players' },
   {
     name: 'Desafios',
@@ -20,6 +22,8 @@ const sidebarOptions = [
 ]
 
 const Sidebar = () => {
+  const { data: session, status } = useSession()
+
   return (
     <Flex
       overflow="hidden"
@@ -29,20 +33,22 @@ const Sidebar = () => {
       w="15%"
       boxShadow=" rgba(0, 0, 0, 0.1) 0px 4px 12px"
     >
-      <List>
-        <ListItem>
-          <Flex py="40px" px="30px">
-            <Button
-              leftIcon={<AddIcon />}
-              variant="solid"
-              width="100%"
-              background="primary"
-              color="white"
-            >
-              Novo Desafio
-            </Button>
-          </Flex>
-        </ListItem>
+      <List pt={status !== 'loading' && !session?.user ? '30px' : '0'}>
+        {status !== 'loading' && !!session?.user && (
+          <ListItem>
+            <Flex py="40px" px="30px">
+              <Button
+                leftIcon={<AddIcon />}
+                variant="solid"
+                width="100%"
+                background="primary"
+                color="white"
+              >
+                Novo Desafio
+              </Button>
+            </Flex>
+          </ListItem>
+        )}
 
         {sidebarOptions.map((option, index) => (
           <NextLink key={index} href={option.link} passHref>

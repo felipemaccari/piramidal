@@ -11,14 +11,25 @@ const LayoutPyramid = () => {
 
   if (data.length === 0) {
     return (
-      <Text my="100px" fontWeight="bold" fontSize="3rem">
-        Nenhum torneio encontrado no momento
-      </Text>
+      <Flex
+        my="100px"
+        align="center"
+        justify="center"
+        width="100%"
+        direction="column"
+      >
+        <Text fontWeight="700" fontSize="2rem" textAlign="center">
+          Nenhum torneio em andamento
+        </Text>
+        <Text fontWeight="500" fontSize="1rem" textAlign="center">
+          Fica ligado que o próximo ta quase ai! :)
+        </Text>
+      </Flex>
     )
   }
 
   return (
-    <Flex direction="column" align="center" overflow="scroll">
+    <Flex direction="column" align="center" overflow="scroll" width={'100%'}>
       <Text my="100px" fontWeight="bold" fontSize="3rem">
         IV Torneio Pirâmide 2022
       </Text>

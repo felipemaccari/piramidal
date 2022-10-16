@@ -1,4 +1,3 @@
-import Navbar from 'components/Navbar'
 import LayoutPyramid from 'layouts/Home/LayoutPyramid'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
@@ -16,12 +15,7 @@ const Home: NextPageWithLayout = () => {
     }
   }, [session])
 
-  return (
-    <>
-      <Navbar />
-      <LayoutPyramid />
-    </>
-  )
+  return <LayoutPyramid />
 }
 
 export default Home
