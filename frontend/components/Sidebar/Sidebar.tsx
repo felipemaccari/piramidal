@@ -3,26 +3,41 @@ import NextLink from 'next/link'
 import { AddIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Box, Button, Flex, Link, List, ListItem, Text } from '@chakra-ui/react'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 import { AiOutlineHome, AiOutlineTrophy, AiOutlineUser } from 'react-icons/ai'
 import { IoTennisballOutline } from 'react-icons/io5'
 
 const sidebarOptions = [
-  { name: 'Torneio atual', icon: <AiOutlineHome size={25} />, link: '/' },
-  { name: 'Jogadores', icon: <AiOutlineUser size={25} />, link: '/players' },
+  {
+    name: 'Torneio atual',
+    icon: <AiOutlineHome size={25} />,
+    link: '/',
+    private: false
+  },
+  {
+    name: 'Jogadores',
+    icon: <AiOutlineUser size={25} />,
+    link: '/players',
+    private: true
+  },
   {
     name: 'Desafios',
     icon: <IoTennisballOutline size={22} />,
-    link: '/challenges'
+    link: '/challenges',
+    private: false
   },
   {
     name: 'Torneios',
     icon: <AiOutlineTrophy size={25} />,
-    link: '/tournaments'
+    link: '/tournaments',
+    private: true
   }
 ]
 
 const Sidebar = () => {
   const { data: session, status } = useSession()
+
+  const router = useRouter()
 
   return (
     <Flex
@@ -50,36 +65,44 @@ const Sidebar = () => {
           </ListItem>
         )}
 
-        {sidebarOptions.map((option, index) => (
-          <NextLink key={index} href={option.link} passHref>
-            <Link _hover={{ color: 'white' }}>
-              <Flex
-                align="center"
-                width="100%"
-                color="gray"
-                px="20px"
-                py="20px"
-                justify="space-between"
-                transition="0.3s"
-                borderRadius="2px"
-                _hover={{
-                  background: '#FF731Df2',
-                  color: 'white'
-                }}
-              >
-                <Flex align="center">
-                  <Box width="25px">{option.icon}</Box>
+        {sidebarOptions
+          .filter(option => {
+            if (option.private) {
+              return status !== 'loading' && !!session?.user
+            }
 
-                  <Text ml="15px" fontWeight="600">
-                    {option.name}
-                  </Text>
+            return option
+          })
+          .map((option, index) => (
+            <NextLink key={index} href={option.link} passHref>
+              <Link _hover={{ color: 'white' }}>
+                <Flex
+                  align="center"
+                  width="100%"
+                  color={router.asPath === option.link ? 'primary' : 'gray'}
+                  px="20px"
+                  py="20px"
+                  justify="space-between"
+                  transition="0.3s"
+                  borderRadius="2px"
+                  _hover={{
+                    background: '#FF731Df2',
+                    color: 'white'
+                  }}
+                >
+                  <Flex align="center">
+                    <Box width="25px">{option.icon}</Box>
+
+                    <Text ml="15px" fontWeight="600">
+                      {option.name}
+                    </Text>
+                  </Flex>
+
+                  <ChevronRightIcon fontSize={20} />
                 </Flex>
-
-                <ChevronRightIcon fontSize={20} />
-              </Flex>
-            </Link>
-          </NextLink>
-        ))}
+              </Link>
+            </NextLink>
+          ))}
       </List>
     </Flex>
   )

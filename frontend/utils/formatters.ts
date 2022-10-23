@@ -22,3 +22,15 @@ export const formatPhone = (phone = '') => {
     return phone
   }
 }
+
+export const formatDate = (value = '') => {
+  try {
+    const formattedDate = onlyNumbers(value).substring(0, 8)
+
+    return formattedDate
+      .replace(/^(\d{2})(\d)/g, '$1/$2')
+      .replace(/^(.{5})(\d)/g, '$1/$2')
+  } catch (error) {
+    return value
+  }
+}

@@ -7,7 +7,7 @@ import LayoutPlayersList from './LayoutPlayersList'
 const LayoutPlayers = () => {
   return (
     <Flex direction="column" p="80px" width="100%">
-      <Flex align="center" color="gray" justify="space-between">
+      <Flex align="center" color="grayText" justify="space-between">
         <Flex align="center">
           <AiOutlineUser size={28} />
 

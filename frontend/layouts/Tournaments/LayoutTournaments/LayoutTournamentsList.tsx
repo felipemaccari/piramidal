@@ -1,10 +1,10 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 
-import CardPlayer from 'components/CardPlayer'
-import { useQueryPlayers } from 'service/players'
+import { useQueryTournament } from 'service/tournaments'
+import LayoutTournamentsCardTournament from './LayoutTournamentsCardTournament'
 
-const LayoutPlayersList = () => {
-  const { data: players = [], isLoading } = useQueryPlayers({})
+const LayoutTournamentsList = () => {
+  const { data: tournaments = [], isLoading } = useQueryTournament({})
 
   if (isLoading) {
     return (
@@ -14,7 +14,7 @@ const LayoutPlayersList = () => {
     )
   }
 
-  if (players.length === 0) {
+  if (tournaments.length === 0 && !isLoading) {
     return (
       <Flex
         my="100px"
@@ -29,7 +29,7 @@ const LayoutPlayersList = () => {
           fontSize="2rem"
           textAlign="center"
         >
-          Nenhum jogador cadastrado
+          Nenhum torneio cadastrado
         </Text>
         <Text
           color="grayText"
@@ -37,7 +37,7 @@ const LayoutPlayersList = () => {
           fontSize="1rem"
           textAlign="center"
         >
-          Quando você cadastrar novos jogadores, eles vão aparecer aqui!
+          Aqui você pode adicionar um novo torneio e adicionar jogadores! :)
         </Text>
       </Flex>
     )
@@ -45,11 +45,14 @@ const LayoutPlayersList = () => {
 
   return (
     <Flex direction="column" mt="50px">
-      {players.map(player => (
-        <CardPlayer key={player.id} player={player} />
+      {tournaments.map(tournament => (
+        <LayoutTournamentsCardTournament
+          key={tournament.id}
+          tournament={tournament}
+        />
       ))}
     </Flex>
   )
 }
 
-export default LayoutPlayersList
+export default LayoutTournamentsList

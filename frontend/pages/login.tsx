@@ -20,9 +20,7 @@ import { NextPageWithLayout } from 'types/page'
 import { signIn } from 'next-auth/react'
 import piramidal from 'public/assets/brand/pyramidal.png'
 
-const StyledForm = styled.form`
-  width: 100%;
-`
+const StyledForm = styled.form``
 
 type SignInFormData = {
   email: string

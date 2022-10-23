@@ -7,17 +7,15 @@ type PlayersProps = {
   name: string
 }
 type PlayersListProps = Array<PlayersProps>
-type TournamentProps = {
-  id: string
-}
+
 type PyramidProps = {
-  tournamentID: Array<TournamentProps>
+  tournamentID: string
 }
 
 const Pyramid = ({ tournamentID }: PyramidProps) => {
   const [playerLines, setPlayerLines] = useState<PlayersListProps[]>([])
 
-  const { data = [], isLoading } = useQueryTournamentPlayers(tournamentID[0].id)
+  const { data = [], isLoading } = useQueryTournamentPlayers(tournamentID, {})
 
   useEffect(() => {
     if (data) {
@@ -42,6 +40,8 @@ const Pyramid = ({ tournamentID }: PyramidProps) => {
   if (isLoading) {
     return <Spinner />
   }
+
+  console.log(playerLines)
 
   return (
     <Flex direction="column">
