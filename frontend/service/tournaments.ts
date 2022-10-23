@@ -12,12 +12,16 @@ type AddTournamentProps = {
   active?: boolean
 }
 
-export const useQueryListTournaments = (options: QueryOptions) =>
-  useQuery<Array<AddTournamentProps>>(['queryTournaments'], async () => {
-    const api = await getApi()
+export const useQueryListTournaments = (options: {}) =>
+  useQuery<Array<AddTournamentProps>>(
+    ['queryTournaments'],
+    async () => {
+      const api = await getApi()
 
-    return api.get(`${URL_API}/tournaments`).then(result => result.data)
-  })
+      return api.get(`${URL_API}/tournaments`).then(result => result.data)
+    },
+    options
+  )
 
 export const useQueryTournamentPlayers = (tournamentID: string, options: {}) =>
   useQuery<[], QueryOptions>(

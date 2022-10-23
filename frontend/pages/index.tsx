@@ -1,6 +1,8 @@
-import LayoutPyramid from 'layouts/Home/LayoutPyramid'
-import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
+
+import { useSession } from 'next-auth/react'
+
+import LayoutPyramid from 'layouts/Home/LayoutPyramid'
 import { NextPageWithLayout } from 'types/page'
 
 const Home: NextPageWithLayout = () => {

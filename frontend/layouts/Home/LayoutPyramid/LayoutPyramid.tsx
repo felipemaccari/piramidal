@@ -1,9 +1,18 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 import Pyramid from 'components/Pyramid'
 import { useQueryListTournaments } from 'service/tournaments'
+import { useTournamentState } from 'state/tournament'
 
 const LayoutPyramid = () => {
-  const { data: tournamentList = [], isLoading } = useQueryListTournaments({})
+  const handleSetTournament = useTournamentState(state => state.setTournament)
+
+  const { data: tournamentList = [], isLoading } = useQueryListTournaments({
+    onSuccess: (tournaments: any) => {
+      const { id, description, initialDate, finalDate, active } = tournaments[0]
+
+      handleSetTournament(id, description, initialDate, finalDate, active)
+    }
+  })
 
   if (isLoading) {
     return <Spinner />
