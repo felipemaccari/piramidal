@@ -37,6 +37,12 @@ class ChallengesRepository implements IChallengesRepository {
 
     return challenges;
   }
+
+  async findByTournamentID(tournamentID: string): Promise<Challenge[]> {
+    const challenges = await this.repository.findBy({ tournamentID });
+
+    return challenges;
+  }
 }
 
 export default ChallengesRepository;
