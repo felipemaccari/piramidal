@@ -10,7 +10,7 @@ import { v4 as uuid } from "uuid";
 @Entity("players")
 class Player {
   @PrimaryGeneratedColumn("uuid")
-  id?: string;
+  id: string;
 
   @Column()
   name: string;

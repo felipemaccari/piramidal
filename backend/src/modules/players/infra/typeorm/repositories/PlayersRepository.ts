@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 
 import ICreatePlayerDTO from "@modules/players/dtos/ICreatePlayerDTO";
+import IEditPlayerDTO from "@modules/players/dtos/IEditPlayerDTO";
 import Player from "@modules/players/infra/typeorm/entities/Player";
 import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
 import AppDataSource from "@shared/infra/typeorm";
@@ -12,8 +13,8 @@ class PlayersRepository implements IPlayersRepository {
     this.repository = AppDataSource.getRepository(Player);
   }
 
-  async create({ name, phone }: ICreatePlayerDTO): Promise<void> {
-    const player = await this.repository.create({ name, phone });
+  async create({ name, phone, active }: ICreatePlayerDTO): Promise<void> {
+    const player = await this.repository.create({ name, phone, active });
 
     await this.repository.save(player);
   }
@@ -34,6 +35,15 @@ class PlayersRepository implements IPlayersRepository {
     const player = await this.repository.findOneBy({ id });
 
     return player;
+  }
+
+  async edit({ id, name, phone, active }: IEditPlayerDTO): Promise<void> {
+    console.log("repo", { id, name, phone, active });
+    await this.repository.update(id, {
+      name,
+      phone,
+      active,
+    });
   }
 }
 

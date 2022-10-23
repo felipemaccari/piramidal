@@ -5,11 +5,11 @@ import CreatePlayerUseCase from "@modules/players/useCases/createPlayer/CreatePl
 
 class CreatePlayerController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, phone } = request.body;
+    const { name, phone, active } = request.body;
 
     const createPlayersUseCase = container.resolve(CreatePlayerUseCase);
 
-    await createPlayersUseCase.execute({ name, phone });
+    await createPlayersUseCase.execute({ name, phone, active });
 
     return response.status(201).send();
   }

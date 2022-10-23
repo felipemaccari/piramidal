@@ -6,6 +6,7 @@ import AppError from "@shared/errors/AppError";
 interface IRequest {
   name: string;
   phone: string;
+  active: boolean;
 }
 
 @injectable()
@@ -14,14 +15,14 @@ class CreatePlayerUseCase {
     @inject("PlayersRepository") private playersRepository: IPlayersRepository
   ) {}
 
-  async execute({ name, phone }: IRequest): Promise<void> {
+  async execute({ name, phone, active }: IRequest): Promise<void> {
     const playerAlreadyExists = await this.playersRepository.findByName(name);
 
     if (playerAlreadyExists) {
       throw new AppError("Player already exists");
     }
 
-    await this.playersRepository.create({ name, phone });
+    await this.playersRepository.create({ name, phone, active });
   }
 }
 
