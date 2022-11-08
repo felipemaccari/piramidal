@@ -39,12 +39,16 @@ const LayoutTournamentsAddTournament = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const { register, handleSubmit, setValue } = useForm<AddTournamentProps>()
+  const { register, handleSubmit, setValue, reset } =
+    useForm<AddTournamentProps>()
 
   const queryClient = useQueryClient()
 
   const { mutate, isLoading } = useMutationAddTournament({
     onSuccess: () => {
+      reset()
+      onClose()
+
       toast({
         title: 'Novo torneio incluído com sucesso',
         status: 'success',
@@ -117,7 +121,7 @@ const LayoutTournamentsAddTournament = () => {
 
             <Flex mt="20px">
               <FormControl pr="20px">
-                <FormLabel>Descrição do torneio</FormLabel>
+                <FormLabel>Data inicial</FormLabel>
                 <Input
                   {...register('initialDate')}
                   placeholder="__/__/____"
@@ -126,7 +130,7 @@ const LayoutTournamentsAddTournament = () => {
               </FormControl>
 
               <FormControl>
-                <FormLabel>Descrição do torneio</FormLabel>
+                <FormLabel>Data final</FormLabel>
                 <Input
                   {...register('finalDate')}
                   placeholder="__/__/____"

@@ -3,6 +3,7 @@ import { Flex, Text } from '@chakra-ui/react'
 import { IoTennisballOutline } from 'react-icons/io5'
 
 import LayoutChallengesAddChallenge from './LayoutChallengesAddChallenge'
+import LayoutChallengesList from './LayoutChallengesList'
 
 const LayoutChallenges = () => {
   return (
@@ -19,7 +20,7 @@ const LayoutChallenges = () => {
         <LayoutChallengesAddChallenge />
       </Flex>
 
-      {/* <LayoutChallengesList /> */}
+      <LayoutChallengesList />
     </Flex>
   )
 }

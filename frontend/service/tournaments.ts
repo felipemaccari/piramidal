@@ -4,12 +4,12 @@ import { getApi } from 'service'
 const URL_API = process.env.NEXT_PUBLIC_API_HOST
 
 type AddTournamentProps = {
-  id?: string
-  description?: any
-  initialDate?: any
-  finalDate?: string
-  players?: Array<string>
-  active?: boolean
+  id: string
+  description: string
+  initialDate: any
+  finalDate: any
+  players: Array<string>
+  active: boolean
 }
 
 export const useQueryListTournaments = (options: {}) =>

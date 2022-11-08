@@ -38,7 +38,11 @@ class ListTournamentPlayersUseCase {
       return { ...tournamentPlayer, ...playerInformation };
     });
 
-    return fullTournamentPlayers;
+    const sortedTournamentPlayers = fullTournamentPlayers.sort(
+      (previous, next) => previous.position - next.position
+    );
+
+    return sortedTournamentPlayers;
   }
 }
 

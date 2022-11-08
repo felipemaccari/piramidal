@@ -13,8 +13,14 @@ class ChallengesResultsRepository implements IChallengesResultsRepository {
     this.repository = AppDataSource.getRepository(ChallengeResults);
   }
 
-  listByID(id: string): Promise<ChallengeResults> {
-    const challengeResults = this.repository.findOneBy({ id });
+  async list(): Promise<ChallengeResults[]> {
+    const challengeResults = await this.repository.find();
+
+    return challengeResults;
+  }
+
+  async listByID(id: string): Promise<ChallengeResults> {
+    const challengeResults = await this.repository.findOneBy({ id });
 
     return challengeResults;
   }

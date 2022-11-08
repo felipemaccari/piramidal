@@ -7,10 +7,13 @@ const LayoutPyramid = () => {
   const handleSetTournament = useTournamentState(state => state.setTournament)
 
   const { data: tournamentList = [], isLoading } = useQueryListTournaments({
-    onSuccess: (tournaments: any) => {
-      const { id, description, initialDate, finalDate, active } = tournaments[0]
+    onSuccess: (tournaments: []) => {
+      if (tournaments.length) {
+        const { id, description, initialDate, finalDate, active } =
+          tournaments[0]
 
-      handleSetTournament(id, description, initialDate, finalDate, active)
+        handleSetTournament(id, description, initialDate, finalDate, active)
+      }
     }
   })
 
@@ -48,7 +51,13 @@ const LayoutPyramid = () => {
   }
 
   return (
-    <Flex direction="column" align="center" overflow="scroll" width={'100%'}>
+    <Flex
+      direction="column"
+      align="center"
+      overflow="scroll"
+      width={'100%'}
+      justify="center"
+    >
       <Text my="100px" fontWeight="bold" fontSize="3rem">
         {tournamentList[0].description}
       </Text>

@@ -1,7 +1,7 @@
 import create from 'zustand'
 
 interface TournamentState {
-  id: string
+  tournamentID: string
   description: string
   initialDate: string
   finalDate: string
@@ -16,20 +16,20 @@ interface TournamentState {
 }
 
 export const useTournamentState = create<TournamentState>()(set => ({
-  id: '',
+  tournamentID: '',
   description: '',
   initialDate: '',
   finalDate: '',
   active: false,
   setTournament: (
-    id: string,
+    tournamentID: string,
     description: string,
     initialDate: string,
     finalDate: string,
     active: boolean
   ) =>
     set(() => ({
-      id,
+      tournamentID,
       description,
       initialDate,
       finalDate,

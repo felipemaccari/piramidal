@@ -26,7 +26,7 @@ class CreateChallengeResultsUseCase {
     @inject("ChallengesResultsRepository")
     private challengeResultsRepository: IChallengesResultsRepository,
     @inject("ChallengesRepository")
-    private challengeRepository: IChallengesRepository,
+    private challengesRepository: IChallengesRepository,
     @inject("TournamentsPlayersRepository")
     private tournamentsPlayersRepository: ITournamentsPlayersRepository
   ) {
@@ -75,7 +75,7 @@ class CreateChallengeResultsUseCase {
   async execute(data: ICreateChallengeResultsDTO): Promise<void> {
     const { challengeID } = data;
 
-    const challengeExists = await this.challengeRepository.findByID(
+    const challengeExists = await this.challengesRepository.findByID(
       challengeID
     );
 
@@ -116,18 +116,22 @@ class CreateChallengeResultsUseCase {
     }
 
     if (data.originPlayerGiveup) {
-      const givenUpChallengesByOriginPlayer = await AppDataSource.getRepository(
-        ChallengeResults
-      )
-        .createQueryBuilder("challengesResults")
-        .leftJoinAndSelect("challengesResults.challengeID", "challenges")
-        .where("challenges.originPlayerID = :originPlayerID", {
-          originPlayerID: challengeExists.originPlayerID,
-        })
-        .andWhere("challengesResults.destinationPlayerGiveup = true")
-        .getMany();
+      const challenges = await this.challengesRepository.list();
+      const challengeResults = await this.challengeResultsRepository.list();
 
-      if (givenUpChallengesByOriginPlayer.length > 1) {
+      const originPlayerChallenges = challenges
+        .filter(
+          (challenge) =>
+            challenge.originPlayerID === challengeExists.originPlayerID ||
+            challenge.destinationPlayerID === challengeExists.originPlayerID
+        )
+        .map((challenge) => challenge.id);
+
+      const originPlayerResults = challengeResults.filter((results) =>
+        originPlayerChallenges.includes(results.challengeID)
+      );
+
+      if (originPlayerResults.length > 1) {
         this.originPlayerPoints = GUIVEN_UP_EXCEED_GAME_POINTS;
       }
     }
@@ -165,11 +169,12 @@ class CreateChallengeResultsUseCase {
         },
       ];
 
-      newPositions.map(
-        async (newPosition) =>
-          await this.tournamentsPlayersRepository.editTournamentPlayer(
-            newPosition
-          )
+      await this.tournamentsPlayersRepository.editTournamentPlayer(
+        newPositions[0]
+      );
+
+      await this.tournamentsPlayersRepository.editTournamentPlayer(
+        newPositions[1]
       );
     }
 

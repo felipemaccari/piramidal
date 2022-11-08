@@ -36,9 +36,7 @@ type AddChallengeProps = {
 }
 
 const LayoutChallengesAddChallenge = () => {
-  const id = useTournamentState(state => state.id)
-
-  console.log('idzera', id)
+  const tournamentID = useTournamentState(state => state.tournamentID)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -62,7 +60,16 @@ const LayoutChallengesAddChallenge = () => {
 
       reset()
 
-      queryClient.invalidateQueries(['queryChallenges'])
+      queryClient.invalidateQueries(['queryListChallengesByTournament'])
+    },
+    onError: () => {
+      toast({
+        title: 'Não foi possível cadastrar o desafio.',
+        description: 'Confere suas informações e tente novamente!',
+        status: 'error',
+        duration: 4000,
+        isClosable: true
+      })
     }
   })
 
@@ -82,7 +89,7 @@ const LayoutChallengesAddChallenge = () => {
     })
 
     const newChallenge = {
-      tournamentID: id,
+      tournamentID,
       originPlayerID,
       destinationPlayerID,
       initialDate: format(initialParsed, 'yyyy-MM-dd'),

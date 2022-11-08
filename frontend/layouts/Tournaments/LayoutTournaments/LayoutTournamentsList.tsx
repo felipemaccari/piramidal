@@ -1,10 +1,10 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 
-import { useQueryTournament } from 'service/tournaments'
+import { useQueryListTournaments } from 'service/tournaments'
 import LayoutTournamentsCardTournament from './LayoutTournamentsCardTournament'
 
 const LayoutTournamentsList = () => {
-  const { data: tournaments = [], isLoading } = useQueryTournament({})
+  const { data: tournaments = [], isLoading } = useQueryListTournaments({})
 
   if (isLoading) {
     return (

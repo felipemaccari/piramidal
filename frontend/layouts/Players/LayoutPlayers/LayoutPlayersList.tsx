@@ -1,7 +1,7 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 
-import CardPlayer from 'components/CardPlayer'
 import { useQueryPlayers } from 'service/players'
+import LayoutPlayersListCard from './LayoutPlayersListCard'
 
 const LayoutPlayersList = () => {
   const { data: players = [], isLoading } = useQueryPlayers({})
@@ -46,7 +46,7 @@ const LayoutPlayersList = () => {
   return (
     <Flex direction="column" mt="50px">
       {players.map(player => (
-        <CardPlayer key={player.id} player={player} />
+        <LayoutPlayersListCard key={player.id} player={player} />
       ))}
     </Flex>
   )

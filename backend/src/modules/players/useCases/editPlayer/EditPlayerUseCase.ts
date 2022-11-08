@@ -12,14 +12,11 @@ class EditPlayerUseCase {
   ) {}
 
   async execute(data: IEditPlayerDTO): Promise<void> {
-    console.log("data", data);
     const player = await this.playersRepository.findByID(data.id);
 
     if (!player) {
       throw new AppError("Player not found");
     }
-
-    console.log("player", player);
 
     await this.playersRepository.edit({ ...player, ...data });
   }

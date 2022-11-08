@@ -17,8 +17,8 @@ import LayoutTournamentsFinishTournament from './LayoutTournamentsCardTournament
 
 type Tournament = {
   description: string
-  initialDate: Date
-  finalDate: Date
+  initialDate: any
+  finalDate: any
   active: boolean
 }
 

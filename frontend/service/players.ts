@@ -10,8 +10,10 @@ type QueryPlayerProps = {
 }
 
 type MutationPlayerProps = {
+  id?: string
   name: string
   phone: string
+  active?: boolean
 }
 
 export const useQueryPlayers = (options: any) =>
@@ -31,5 +33,16 @@ export const useMutationAddPlayer = (options: any) =>
 
     return api
       .post(`${URL_API}/players`, { ...playerData, active: true })
+      .then(result => result.data)
+  }, options)
+
+export const useMutationEditPlayer = (options: any) =>
+  useMutation(async (playerData: MutationPlayerProps) => {
+    const api = await getApi()
+
+    return api
+      .put(`${URL_API}/players/${playerData.id}`, {
+        ...playerData
+      })
       .then(result => result.data)
   }, options)

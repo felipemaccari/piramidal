@@ -1,5 +1,5 @@
 interface IEditTournamentPlayerDTO {
-  id: string;
+  id?: string;
   activeOnTournament?: boolean;
   position?: number;
 }

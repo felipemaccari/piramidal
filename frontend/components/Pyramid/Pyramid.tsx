@@ -38,10 +38,12 @@ const Pyramid = ({ tournamentID }: PyramidProps) => {
   }, [data])
 
   if (isLoading) {
-    return <Spinner />
+    return (
+      <Flex align="center" justify="center" direction="column" width="100%">
+        <Spinner />
+      </Flex>
+    )
   }
-
-  console.log(playerLines)
 
   return (
     <Flex direction="column">

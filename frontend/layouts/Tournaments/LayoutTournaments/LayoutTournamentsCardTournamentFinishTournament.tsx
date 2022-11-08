@@ -27,6 +27,7 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
 
   const { mutate, isLoading } = useMutationEditTournament({
     onSuccess: () => {
+      onClose()
       toast({
         title: 'O torneio foi encerrado!',
         status: 'success',
@@ -53,7 +54,7 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
 
   return (
     <>
-      <MenuItem onClick={onOpen} icon={<CloseIcon />}>
+      <MenuItem onClick={onOpen} icon={<CloseIcon />} color="red">
         Encerrar Torneio
       </MenuItem>
 
