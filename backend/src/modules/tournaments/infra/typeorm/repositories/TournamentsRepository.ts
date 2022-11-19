@@ -57,6 +57,14 @@ class TournamentsRepository implements ITournamentsRepository {
       finished,
     });
   }
+
+  async findActive(): Promise<Tournament> {
+    const activeTournament = await this.repository.findOneBy({
+      finished: false,
+    });
+
+    return activeTournament;
+  }
 }
 
 export default TournamentsRepository;

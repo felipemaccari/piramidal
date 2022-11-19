@@ -146,7 +146,7 @@ class CreateChallengeResultsUseCase {
       this.handlePlayersPontuationBySets(data);
     }
 
-    if (this.destinationPlayerPoints > this.originPlayerPoints) {
+    if (this.originPlayerPoints > this.destinationPlayerPoints) {
       const tournamentPositions =
         await this.tournamentsPlayersRepository.findByTournamentID(
           challengeExists.tournamentID
@@ -158,6 +158,8 @@ class CreateChallengeResultsUseCase {
           position.playerID === challengeExists.originPlayerID
       );
 
+      console.log("challengePlayersPositions", challengePlayersPositions);
+
       const newPositions = [
         {
           ...challengePlayersPositions[0],
@@ -168,6 +170,8 @@ class CreateChallengeResultsUseCase {
           position: challengePlayersPositions[0].position,
         },
       ];
+
+      console.log("newPositions", newPositions);
 
       await this.tournamentsPlayersRepository.editTournamentPlayer(
         newPositions[0]

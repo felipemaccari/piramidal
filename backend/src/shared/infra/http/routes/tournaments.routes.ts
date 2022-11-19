@@ -4,6 +4,7 @@ import CreateTournamentController from "@modules/tournaments/useCases/createTour
 import CreateTournamentPlayerController from "@modules/tournaments/useCases/createTournamentPlayer/CreateTournamentPlayerController";
 import EditTournamentController from "@modules/tournaments/useCases/editTournament/EditTournamentController";
 import EditTournamentPlayerController from "@modules/tournaments/useCases/editTournamentPlayer/EditTournamentPlayerController";
+import ListActiveTournamentController from "@modules/tournaments/useCases/listActiveTournament/ListActiveTournamentController";
 import ListTournamentController from "@modules/tournaments/useCases/listTournament/ListTournamentController";
 import ListTournamentPlayersController from "@modules/tournaments/useCases/listTournamentPlayers/ListTournamentPlayersController";
 import RaffleTournamentController from "@modules/tournaments/useCases/raffleTournament/RaffleTournamentController";
@@ -18,6 +19,7 @@ const editTournamentPlayerController = new EditTournamentPlayerController();
 const listTournamentController = new ListTournamentController();
 const listTournamentPlayersController = new ListTournamentPlayersController();
 const raffleTournamentController = new RaffleTournamentController();
+const listActiveTournamentController = new ListActiveTournamentController();
 
 tournamentsRoutes.post(
   "/",
@@ -36,7 +38,9 @@ tournamentsRoutes.post(
 );
 
 tournamentsRoutes.get("/", listTournamentController.handle);
+tournamentsRoutes.get("/active", listActiveTournamentController.handle);
 tournamentsRoutes.get("/:tournamentID", listTournamentPlayersController.handle);
+
 tournamentsRoutes.put(
   "/:tournamentID",
   ensureAuthenticated,

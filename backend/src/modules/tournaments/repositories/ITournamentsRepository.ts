@@ -8,6 +8,7 @@ interface ITournamentsRepository {
   list(): Promise<Tournament[]>;
   findByID(id: string): Promise<Tournament>;
   edit(data: IEditTournamentDTO): Promise<void>;
+  findActive(): Promise<Tournament>;
 }
 
 export default ITournamentsRepository;
