@@ -5,6 +5,8 @@ interface IChallengesRepository {
   list(): Promise<Challenge[]>;
   create(data: ICreateChallengeDTO): Promise<void>;
   findByID(id: string): Promise<Challenge>;
+  findByPlayerID(playerID: string): Promise<Challenge[]>;
+  findByOriginPlayerID(originPlayerID: string): Promise<Challenge[]>;
   findByDestinationPlayerID(destinationPlayerID: string): Promise<Challenge[]>;
   findByTournamentID(tournamentID: string): Promise<Challenge[]>;
 }

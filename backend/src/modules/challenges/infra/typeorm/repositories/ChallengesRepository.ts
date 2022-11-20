@@ -38,6 +38,24 @@ class ChallengesRepository implements IChallengesRepository {
     return challenges;
   }
 
+  async findByOriginPlayerID(originPlayerID: string): Promise<Challenge[]> {
+    const challenges = await this.repository.findBy({ originPlayerID });
+
+    return challenges;
+  }
+
+  async findByPlayerID(playerID: string): Promise<Challenge[]> {
+    const challengesByOrigin = await this.repository.findBy({
+      originPlayerID: playerID,
+    });
+
+    const challengesByDestination = await this.repository.findBy({
+      destinationPlayerID: playerID,
+    });
+
+    return [...challengesByOrigin, ...challengesByDestination];
+  }
+
   async findByTournamentID(tournamentID: string): Promise<Challenge[]> {
     const challenges = await this.repository.findBy({ tournamentID });
 

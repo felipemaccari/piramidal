@@ -4,6 +4,7 @@ import ICreateChallengeResultsDTO from "@modules/challenges/dtos/ICreateChalleng
 import { IChallengesResultsRepository } from "@modules/challenges/repositories/IChallengesResultsRepository";
 import AppDataSource from "@shared/infra/typeorm";
 
+import Challenge from "../entities/Challenge";
 import ChallengeResults from "../entities/ChallengeResults";
 
 class ChallengesResultsRepository implements IChallengesResultsRepository {
@@ -35,6 +36,21 @@ class ChallengesResultsRepository implements IChallengesResultsRepository {
     const challengeResults = await this.repository.findOneBy({
       challengeID,
     });
+
+    return challengeResults;
+  }
+
+  async listByChallengesIDS(
+    challenges: Array<Challenge>
+  ): Promise<ChallengeResults[]> {
+    const challengeResults = Promise.all(
+      challenges.map(
+        async (challenge) =>
+          await this.repository.findOneBy({
+            challengeID: challenge.id,
+          })
+      )
+    );
 
     return challengeResults;
   }
