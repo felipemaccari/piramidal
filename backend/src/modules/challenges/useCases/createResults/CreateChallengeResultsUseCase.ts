@@ -158,8 +158,6 @@ class CreateChallengeResultsUseCase {
           position.playerID === challengeExists.originPlayerID
       );
 
-      console.log("challengePlayersPositions", challengePlayersPositions);
-
       const newPositions = [
         {
           ...challengePlayersPositions[0],
@@ -170,8 +168,6 @@ class CreateChallengeResultsUseCase {
           position: challengePlayersPositions[0].position,
         },
       ];
-
-      console.log("newPositions", newPositions);
 
       await this.tournamentsPlayersRepository.editTournamentPlayer(
         newPositions[0]

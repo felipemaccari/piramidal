@@ -38,7 +38,6 @@ class PlayersRepository implements IPlayersRepository {
   }
 
   async edit({ id, name, phone, active }: IEditPlayerDTO): Promise<void> {
-    console.log("repo", { id, name, phone, active });
     await this.repository.update(id, {
       name,
       phone,
