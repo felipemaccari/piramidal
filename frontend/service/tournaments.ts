@@ -12,6 +12,53 @@ type AddTournamentProps = {
   active: boolean
 }
 
+export type ActiveChallenge = {
+  id?: string
+  initialDate: any
+  finalDate: any
+  originPlayerID?: string
+  destinationPlayerID?: string
+  tournamentID?: string
+  createdAt?: Date
+  updatedAt?: Date
+  originPlayerName?: string
+  destinationPlayerName?: string
+}
+
+type ActiveTournament = {
+  id: string
+  description: string
+  initialDate: any
+  finalDate: any
+  active: boolean
+  finished: boolean
+  createdAt: Date
+  updatedAt: Date
+}
+
+export type ChallengePlayer = {
+  id: string
+  name: string
+  phone: string
+  active: boolean
+  createdAt: Date
+  updatedAt: Date
+  position: number
+  activeOnTournament: boolean
+  playerID: string
+  tournamentID: string
+}
+
+export type ActiveTournamentPlayers = {
+  player: ChallengePlayer
+  activeChallenge?: ActiveChallenge
+}
+
+export interface IListActiveTournamentDTO {
+  tournament: ActiveTournament
+  players: Array<ActiveTournamentPlayers>
+}
+
 export const useQueryListTournaments = (options: {}) =>
   useQuery<Array<AddTournamentProps>>(
     ['queryTournaments'],
@@ -19,6 +66,19 @@ export const useQueryListTournaments = (options: {}) =>
       const api = await getApi()
 
       return api.get(`${URL_API}/tournaments`).then(result => result.data)
+    },
+    options
+  )
+
+export const useQueryListActiveTournament = (options: {}) =>
+  useQuery<IListActiveTournamentDTO>(
+    ['queryListActiveTournament'],
+    async () => {
+      const api = await getApi()
+
+      return api
+        .get(`${URL_API}/tournaments/active`)
+        .then(result => result.data)
     },
     options
   )

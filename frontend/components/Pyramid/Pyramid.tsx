@@ -1,32 +1,31 @@
 import { useEffect, useState } from 'react'
 
-import { Flex, Spinner, Text } from '@chakra-ui/react'
-import { useQueryTournamentPlayers } from 'service/tournaments'
-
-type PlayersProps = {
-  name: string
-}
-type PlayersListProps = Array<PlayersProps>
+import { Flex } from '@chakra-ui/react'
+import { ActiveTournamentPlayers } from 'service/tournaments'
+import PyramidItem from './PyramidItem'
 
 type PyramidProps = {
-  tournamentID: string
+  tournamentPlayers: Array<ActiveTournamentPlayers>
 }
 
-const Pyramid = ({ tournamentID }: PyramidProps) => {
-  const [playerLines, setPlayerLines] = useState<PlayersListProps[]>([])
-
-  const { data = [], isLoading } = useQueryTournamentPlayers(tournamentID, {})
+const Pyramid = ({ tournamentPlayers }: PyramidProps) => {
+  const [playerLines, setPlayerLines] = useState<
+    Array<ActiveTournamentPlayers>
+  >([])
 
   useEffect(() => {
-    if (data) {
-      let pyramidItems: PlayersListProps[] = []
+    if (tournamentPlayers) {
+      let pyramidItems: any[] = []
 
       let countIterator = 0
       let quantity = 1
       let playerPerLine = 2
 
-      while (countIterator < data.length) {
-        pyramidItems = [...pyramidItems, data.slice(countIterator, quantity)]
+      while (countIterator < tournamentPlayers.length) {
+        pyramidItems = [
+          ...pyramidItems,
+          tournamentPlayers.slice(countIterator, quantity)
+        ]
 
         countIterator = quantity
         quantity = quantity + playerPerLine
@@ -35,41 +34,14 @@ const Pyramid = ({ tournamentID }: PyramidProps) => {
 
       setPlayerLines(pyramidItems)
     }
-  }, [data])
-
-  if (isLoading) {
-    return (
-      <Flex align="center" justify="center" direction="column" width="100%">
-        <Spinner />
-      </Flex>
-    )
-  }
+  }, [tournamentPlayers])
 
   return (
     <Flex direction="column">
-      {playerLines.map((player, index) => (
+      {playerLines.map((item: any, index: any) => (
         <Flex key={index} justify="center">
-          {player.map((pl, index) => (
-            <Flex
-              mb="-1px"
-              mr="-1px"
-              key={index}
-              border="1px solid #ccc"
-              borderRadius="4px"
-              justify="center"
-              width="170px"
-              align="center"
-              height="50px"
-              background="white"
-              _hover={{
-                background: '#eee',
-                cursor: 'pointer',
-                transition: ' transform 300ms',
-                transform: 'translateY(-2px)'
-              }}
-            >
-              <Text textAlign="center">{pl.name}</Text>
-            </Flex>
+          {item.map((item: any, index: any) => (
+            <PyramidItem key={item.player.id} tournamentPlayer={item} />
           ))}
         </Flex>
       ))}

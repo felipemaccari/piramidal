@@ -48,8 +48,7 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
   })
 
   const handleFinishTournament = () => {
-    console.log(tournament)
-    mutate({ ...tournament, active: false })
+    mutate({ ...tournament, finished: true })
   }
 
   return (

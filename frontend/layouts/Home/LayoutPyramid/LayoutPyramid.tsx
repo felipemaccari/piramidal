@@ -1,19 +1,20 @@
 import { Flex, Spinner, Text } from '@chakra-ui/react'
 import Pyramid from 'components/Pyramid'
-import { useQueryListTournaments } from 'service/tournaments'
+import {
+  IListActiveTournamentDTO,
+  useQueryListActiveTournament
+} from 'service/tournaments'
 import { useTournamentState } from 'state/tournament'
 
 const LayoutPyramid = () => {
   const handleSetTournament = useTournamentState(state => state.setTournament)
 
-  const { data: tournamentList = [], isLoading } = useQueryListTournaments({
-    onSuccess: (tournaments: []) => {
-      if (tournaments.length) {
-        const { id, description, initialDate, finalDate, active } =
-          tournaments[0]
+  const { data: activeTournament, isLoading } = useQueryListActiveTournament({
+    onSuccess: (tournamentData: IListActiveTournamentDTO) => {
+      const { id, description, initialDate, finalDate, active } =
+        tournamentData.tournament
 
-        handleSetTournament(id, description, initialDate, finalDate, active)
-      }
+      handleSetTournament(id, description, initialDate, finalDate, active)
     }
   })
 
@@ -21,7 +22,7 @@ const LayoutPyramid = () => {
     return <Spinner />
   }
 
-  if (tournamentList.length === 0) {
+  if (!activeTournament) {
     return (
       <Flex
         my="100px"
@@ -59,13 +60,11 @@ const LayoutPyramid = () => {
       justify="center"
     >
       <Text my="100px" fontWeight="bold" fontSize="3rem">
-        {tournamentList[0].description}
+        {activeTournament.tournament.description}
       </Text>
 
       <Flex height="calc(100vh - 70px)" width="100%" justify="center">
-        {tournamentList && tournamentList.length > 0 ? (
-          <Pyramid tournamentID={tournamentList[0].id || ''} />
-        ) : null}
+        <Pyramid tournamentPlayers={activeTournament.players} />
       </Flex>
     </Flex>
   )

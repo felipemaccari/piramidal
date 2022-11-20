@@ -19,7 +19,7 @@ type Tournament = {
   description: string
   initialDate: any
   finalDate: any
-  active: boolean
+  finished: boolean
 }
 
 type LayoutTournamentsCardTournamentProps = {
@@ -76,7 +76,7 @@ const LayoutTournamentsCardTournament = ({
           </Text>
 
           <Text fontSize="1rem">
-            {tournament.active ? 'Em andamento' : 'Encerrado'}
+            {!tournament.finished ? 'Em andamento' : 'Encerrado'}
           </Text>
         </Box>
 

@@ -3,14 +3,14 @@ import create from 'zustand'
 interface TournamentState {
   tournamentID: string
   description: string
-  initialDate: string
-  finalDate: string
+  initialDate: any
+  finalDate: any
   active: boolean
   setTournament: (
     id: string,
     description: string,
-    initialDate: string,
-    finalDate: string,
+    initialDate: any,
+    finalDate: any,
     active: boolean
   ) => void
 }

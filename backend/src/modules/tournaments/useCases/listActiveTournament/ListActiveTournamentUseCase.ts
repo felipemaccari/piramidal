@@ -23,7 +23,7 @@ class ListActiveTournamentUseCase {
     private challengesResultsRepository: IChallengesResultsRepository
   ) {}
 
-  async execute(): Promise<IListActiveTournamentDTO[]> {
+  async execute(): Promise<IListActiveTournamentDTO> {
     const activeTournament = await this.tournamentsRepository.findActive();
 
     if (!activeTournament) {
@@ -73,7 +73,7 @@ class ListActiveTournamentUseCase {
           );
 
           return {
-            ...player,
+            player: { ...player },
             activeChallenge: {
               ...playerChallenge,
               originPlayerName: originPlayerInformation.name,
@@ -82,10 +82,15 @@ class ListActiveTournamentUseCase {
           };
         }
 
-        return { ...player };
+        return { player: { ...player } };
       });
 
-    return tournamentPlayersWithChallenges;
+    return {
+      tournament: { ...activeTournament },
+      players: [...tournamentPlayersWithChallenges].sort(
+        (previous, next) => previous.player.position - next.player.position
+      ),
+    };
   }
 }
 
