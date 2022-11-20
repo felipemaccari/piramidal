@@ -1,4 +1,13 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import {
+  Flex,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text
+} from '@chakra-ui/react'
 import Pyramid from 'components/Pyramid'
 import {
   IListActiveTournamentDTO,
@@ -52,21 +61,29 @@ const LayoutPyramid = () => {
   }
 
   return (
-    <Flex
-      direction="column"
-      align="center"
-      overflow="scroll"
-      width={'100%'}
-      justify="center"
-    >
-      <Text my="100px" fontWeight="bold" fontSize="3rem">
-        {activeTournament.tournament.description}
-      </Text>
+    <Tabs isFitted variant="enclosed" width="100%" mt="50px">
+      <TabList mb="1em">
+        <Tab>Pirâmide</Tab>
+        <Tab>Estatísticas</Tab>
+      </TabList>
 
-      <Flex height="calc(100vh - 70px)" width="100%" justify="center">
-        <Pyramid tournamentPlayers={activeTournament.players} />
-      </Flex>
-    </Flex>
+      <TabPanels>
+        <TabPanel>
+          <Flex direction="column" align="center" justify="center">
+            <Text my="50px" fontWeight="bold" fontSize="3rem">
+              {activeTournament.tournament.description}
+            </Text>
+
+            <Flex justify="center">
+              <Pyramid tournamentPlayers={activeTournament.players} />
+            </Flex>
+          </Flex>
+        </TabPanel>
+        <TabPanel>
+          <p>two!</p>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
   )
 }
 
