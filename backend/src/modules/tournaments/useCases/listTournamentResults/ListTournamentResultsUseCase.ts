@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 import { IChallengesResultsRepository } from "@modules/challenges/repositories/IChallengesResultsRepository";
 import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
+import IListTournamentResultsDTO from "@modules/tournaments/dtos/IListTournamentResultsDTO";
 import ITournamentsPlayersRepository from "@modules/tournaments/repositories/ITournamentsPlayersRepository";
 import ITournamentsRepository from "@modules/tournaments/repositories/ITournamentsRepository";
 import AppError from "@shared/errors/AppError";
@@ -22,7 +23,7 @@ class ListTournamentResultsUseCase {
     private challengesResultsRepository: IChallengesResultsRepository
   ) {}
 
-  async execute(tournamentID: string): Promise<any> {
+  async execute(tournamentID: string): Promise<IListTournamentResultsDTO[]> {
     const tournament = await this.tournamentsRepository.findByID(tournamentID);
 
     if (!tournament) {
