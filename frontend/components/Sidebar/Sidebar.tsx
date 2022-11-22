@@ -45,7 +45,7 @@ const Sidebar = () => {
       position="sticky"
       direction="column"
       minHeight="calc(100vh - 70px)"
-      w="15%"
+      minW="12%"
       boxShadow=" rgba(0, 0, 0, 0.1) 0px 4px 12px"
     >
       <List pt={status !== 'loading' && !session?.user ? '30px' : '0'}>

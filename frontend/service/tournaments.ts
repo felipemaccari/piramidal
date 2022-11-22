@@ -59,6 +59,26 @@ export interface IListActiveTournamentDTO {
   players: Array<ActiveTournamentPlayers>
 }
 
+export interface IListTournamentResultsDTO {
+  id: string
+  position: number
+  activeOnTournament: boolean
+  playerID: string
+  tournamentID: string
+  createdAt: Date
+  updatedAt: Date
+  name: string
+  phone: string
+  active: boolean
+  challengesAsOrigin: number
+  pointsAsOrigin: number
+  pointsTotal: number
+  pointsAsDestination: number
+  winAsDestination: number
+  winAsOrigin: number
+  challengesAsDestination: number
+}
+
 export const useQueryListTournaments = (options: {}) =>
   useQuery<Array<AddTournamentProps>>(
     ['queryTournaments'],
@@ -81,6 +101,19 @@ export const useQueryListActiveTournament = (options: {}) =>
         .then(result => result.data)
     },
     options
+  )
+
+export const useQueryTournamentResults = (tournamentID: string, options: {}) =>
+  useQuery<IListTournamentResultsDTO[], QueryOptions>(
+    ['queryTournamentResults', tournamentID],
+    async () => {
+      const api = await getApi()
+
+      return api
+        .get(`${URL_API}/tournaments/${tournamentID}/results`)
+        .then(result => result.data)
+    },
+    { ...options }
   )
 
 export const useQueryTournamentPlayers = (tournamentID: string, options: {}) =>

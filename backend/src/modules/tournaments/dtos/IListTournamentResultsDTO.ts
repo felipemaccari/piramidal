@@ -11,7 +11,10 @@ interface IListTournamentResultsDTO {
   active: boolean;
   challengesAsOrigin: number;
   pointsAsOrigin: number;
+  pointsTotal: number;
   pointsAsDestination: number;
+  winAsDestination: number;
+  winAsOrigin: number;
   challengesAsDestination: number;
 }
 

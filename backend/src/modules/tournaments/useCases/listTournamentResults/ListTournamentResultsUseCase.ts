@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import ChallengeResults from "@modules/challenges/infra/typeorm/entities/ChallengeResults";
 import { IChallengesRepository } from "@modules/challenges/repositories/IChallengesRepository";
 import { IChallengesResultsRepository } from "@modules/challenges/repositories/IChallengesResultsRepository";
 import { IPlayersRepository } from "@modules/players/repositories/IPlayersRepository";
@@ -55,7 +56,9 @@ class ListTournamentResultsUseCase {
           );
 
         let pointsAsOrigin = 0;
-        if (challengesResultsAsOrigin.length > 0) {
+        let winAsOrigin: ChallengeResults[];
+
+        if (challengesResultsAsOrigin?.length > 0) {
           pointsAsOrigin = challengesResultsAsOrigin
             .filter((challenge) => challenge)
             .reduce(
@@ -63,13 +66,14 @@ class ListTournamentResultsUseCase {
                 total + currentChallengeResult.originPlayerPoints,
               0
             );
-        }
 
-        const winAsOrigin = challengesResultsAsOrigin.filter(
-          (challengesResults) =>
-            challengesResults.originPlayerPoints >
-            challengesResults.destinationPlayerPoints
-        );
+          winAsOrigin = challengesResultsAsOrigin.filter(
+            (challengesResults) =>
+              challengesResults &&
+              challengesResults.originPlayerPoints >
+                challengesResults.destinationPlayerPoints
+          );
+        }
 
         const challengesAsDestination =
           await this.challengesRepository.findByDestinationPlayerID(player.id);
@@ -78,31 +82,36 @@ class ListTournamentResultsUseCase {
           await this.challengesResultsRepository.listByChallengesIDS(
             challengesAsOrigin
           );
+
         let pointsAsDestination = 0;
-        if (challengesResultsAsDestination.length > 0) {
+        let winAsDestination: ChallengeResults[];
+
+        if (challengesResultsAsDestination?.length > 0) {
           pointsAsDestination = challengesResultsAsDestination
-            .filter((challenge) => challenge)
+            .filter((challenge) => !!challenge)
             .reduce(
               (total, currentChallengeResult) =>
                 total + currentChallengeResult.destinationPlayerPoints,
               0
             );
+
+          winAsDestination = challengesResultsAsDestination.filter(
+            (challengeResult) =>
+              challengeResult &&
+              challengeResult.destinationPlayerPoints >
+                challengeResult.originPlayerPoints
+          );
         }
-        const winAsDestination = challengesResultsAsDestination.filter(
-          (challengeResult) =>
-            challengeResult.destinationPlayerPoints >
-            challengeResult.originPlayerPoints
-        );
 
         return {
           ...player,
-          challengesAsOrigin: challengesAsOrigin.length,
+          challengesAsOrigin: challengesAsOrigin?.length || 0,
           pointsAsOrigin,
           pointsAsDestination,
           pointsTotal: pointsAsOrigin + pointsAsDestination,
-          winAsDestination: winAsDestination.length,
-          winAsOrigin: winAsOrigin.length,
-          challengesAsDestination: challengesAsDestination.length,
+          winAsDestination: winAsDestination?.length || 0,
+          winAsOrigin: winAsOrigin?.length || 0,
+          challengesAsDestination: challengesAsDestination?.length || 0,
         };
       })
     );

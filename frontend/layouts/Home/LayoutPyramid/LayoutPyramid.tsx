@@ -8,12 +8,13 @@ import {
   Tabs,
   Text
 } from '@chakra-ui/react'
-import Pyramid from 'components/Pyramid'
 import {
   IListActiveTournamentDTO,
   useQueryListActiveTournament
 } from 'service/tournaments'
 import { useTournamentState } from 'state/tournament'
+import LayoutPyramidResults from './LayoutPyramidResults'
+import LayoutPyramidTournament from './LayoutPyramidTournament'
 
 const LayoutPyramid = () => {
   const handleSetTournament = useTournamentState(state => state.setTournament)
@@ -61,29 +62,36 @@ const LayoutPyramid = () => {
   }
 
   return (
-    <Tabs isFitted variant="enclosed" width="100%" mt="50px">
-      <TabList mb="1em">
-        <Tab>Pirâmide</Tab>
-        <Tab>Estatísticas</Tab>
-      </TabList>
+    <Flex direction="column" width="100%">
+      <Flex justify="center">
+        <Text mt="50px" fontWeight="bold" fontSize="3rem">
+          {activeTournament.tournament.description}
+        </Text>
+      </Flex>
 
-      <TabPanels>
-        <TabPanel>
-          <Flex direction="column" align="center" justify="center">
-            <Text my="50px" fontWeight="bold" fontSize="3rem">
-              {activeTournament.tournament.description}
-            </Text>
+      <Tabs isFitted variant="enclosed" mt="50px">
+        <TabList mb="1em">
+          <Tab>
+            <Text fontWeight={600}>Pirâmide</Text>
+          </Tab>
+          <Tab isDisabled={isLoading || !activeTournament}>
+            <Text fontWeight={600}>Estatísticas</Text>
+          </Tab>
+        </TabList>
 
-            <Flex justify="center">
-              <Pyramid tournamentPlayers={activeTournament.players} />
-            </Flex>
-          </Flex>
-        </TabPanel>
-        <TabPanel>
-          <p>two!</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+        <TabPanels>
+          <TabPanel>
+            <LayoutPyramidTournament activeTournament={activeTournament} />
+          </TabPanel>
+
+          <TabPanel>
+            <LayoutPyramidResults
+              tournamentID={activeTournament.tournament.id}
+            />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </Flex>
   )
 }
 

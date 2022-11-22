@@ -9,6 +9,7 @@ import { NextPageWithLayout } from 'types/page'
 
 import MainLayout from 'layouts/MainLayout'
 import 'service/index'
+import 'styles/globals.css'
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout & { auth?: boolean }

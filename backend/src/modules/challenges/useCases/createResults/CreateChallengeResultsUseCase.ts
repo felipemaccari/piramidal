@@ -103,7 +103,7 @@ class CreateChallengeResultsUseCase {
       const givenUpChallengesByDestinationPlayer =
         await AppDataSource.getRepository(ChallengeResults)
           .createQueryBuilder("challengesResults")
-          .leftJoinAndSelect("challengesResults.challengeID", "callenges")
+          .leftJoinAndSelect("challengesResults.challengeID", "challenges")
           .where("challenges.destinationPlayerID = :destinationPlayerID", {
             destinationPlayerID: challengeExists.destinationPlayerID,
           })
