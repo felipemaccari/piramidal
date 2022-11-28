@@ -17,8 +17,6 @@ type PyramidItemProps = {
 }
 
 const PyramidItem = ({ tournamentPlayer }: PyramidItemProps) => {
-  console.log(tournamentPlayer.activeChallenge)
-
   const initialParsed = parseISO(tournamentPlayer.activeChallenge?.initialDate)
 
   const finalParsed = parseISO(tournamentPlayer.activeChallenge?.finalDate)
@@ -40,6 +38,7 @@ const PyramidItem = ({ tournamentPlayer }: PyramidItemProps) => {
           _hover={{
             background: '#eee',
             cursor: 'pointer',
+            color: 'black',
             transition: ' transform 300ms',
             transform: 'translateY(-2px)'
           }}

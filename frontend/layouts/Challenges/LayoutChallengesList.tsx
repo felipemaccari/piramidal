@@ -7,9 +7,9 @@ import {
   Badge,
   Box,
   Flex,
-  Spinner,
   Text
 } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 import { format, isAfter } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { useQueryListChallengesByTournament } from 'service/challenges'
@@ -27,8 +27,8 @@ type TextStatusProps = {
 }
 
 const TextStatus = ({ gameDate, finalDate, finished }: TextStatusProps) => {
-  let highlightColor: string = 'initial'
-  let statusDescription: string = 'Em aberto'
+  let highlightColor: string = '#1dff6ae3'
+  let statusDescription: string = 'Concluído'
 
   if (finished) {
     highlightColor = '#1dff6ae3'
@@ -62,11 +62,7 @@ const LayoutChallengesList = () => {
     useQueryListChallengesByTournament(tournamentID, {})
 
   if (isLoading) {
-    return (
-      <Flex align="center" justify="center" direction="column" width="100%">
-        <Spinner />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   if (challenges.length === 0 && !isLoading) {

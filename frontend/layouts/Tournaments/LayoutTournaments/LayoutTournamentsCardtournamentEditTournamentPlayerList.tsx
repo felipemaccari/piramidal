@@ -1,4 +1,5 @@
-import { Flex, Spinner, Text, useToast } from '@chakra-ui/react'
+import { Flex, Text, useToast } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 import { useState } from 'react'
 
 import { AiOutlineUser } from 'react-icons/ai'
@@ -51,8 +52,6 @@ const LayoutTournamentsCardtournamentEditTournamentPlayerList = ({
       }
     })
 
-  console.log(tournamentPlayers)
-
   // const selectAllPlayers = useCallback(() => {
   //   setSelectedPlayers(players.map(player => player.id))
   // }, [players, setSelectedPlayers])
@@ -62,11 +61,7 @@ const LayoutTournamentsCardtournamentEditTournamentPlayerList = ({
   // }, [setSelectedPlayers])
 
   if (isLoading || isLoadingTournamentPlayers) {
-    return (
-      <Flex align="center" justify="center" width="100%" mt="50px">
-        <Spinner color="primary" size="md" />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   return (

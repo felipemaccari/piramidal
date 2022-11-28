@@ -1,4 +1,5 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 import { AiOutlineUser } from 'react-icons/ai'
 
@@ -21,11 +22,7 @@ const LayoutTournamentsAddTournamentPlayerList = ({
   // }, [setSelectedPlayers])
 
   if (isLoading) {
-    return (
-      <Flex align="center" justify="center" width="100%" mt="50px">
-        <Spinner color="primary" size="md" />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   return (

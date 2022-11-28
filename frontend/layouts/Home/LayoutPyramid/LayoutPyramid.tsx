@@ -1,6 +1,5 @@
 import {
   Flex,
-  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -8,6 +7,7 @@ import {
   Tabs,
   Text
 } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 import {
   IListActiveTournamentDTO,
   useQueryListActiveTournament
@@ -29,7 +29,7 @@ const LayoutPyramid = () => {
   })
 
   if (isLoading) {
-    return <Spinner />
+    return <LoadingSpinner />
   }
 
   if (!activeTournament) {

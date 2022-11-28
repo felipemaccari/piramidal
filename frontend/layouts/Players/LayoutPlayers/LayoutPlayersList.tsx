@@ -1,4 +1,5 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 import { useQueryPlayers } from 'service/players'
 import LayoutPlayersListCard from './LayoutPlayersListCard'
@@ -7,11 +8,7 @@ const LayoutPlayersList = () => {
   const { data: players = [], isLoading } = useQueryPlayers({})
 
   if (isLoading) {
-    return (
-      <Flex align="center" justify="center" direction="column" width="100%">
-        <Spinner />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   if (players.length === 0) {

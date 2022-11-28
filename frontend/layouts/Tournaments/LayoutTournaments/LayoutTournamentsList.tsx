@@ -1,4 +1,5 @@
-import { Flex, Spinner, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 import { useQueryListTournaments } from 'service/tournaments'
 import LayoutTournamentsCardTournament from './LayoutTournamentsCardTournament'
@@ -7,11 +8,7 @@ const LayoutTournamentsList = () => {
   const { data: tournaments = [], isLoading } = useQueryListTournaments({})
 
   if (isLoading) {
-    return (
-      <Flex align="center" justify="center" direction="column" width="100%">
-        <Spinner />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   if (tournaments.length === 0 && !isLoading) {

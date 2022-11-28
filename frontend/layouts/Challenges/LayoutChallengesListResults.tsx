@@ -1,4 +1,5 @@
-import { AccordionPanel, Flex, Spinner, Text } from '@chakra-ui/react'
+import { AccordionPanel, Flex, Text } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 import { format } from 'date-fns'
 import {
   ListChallengeProps,
@@ -21,11 +22,7 @@ const LayoutChallengesListResults = ({
   )
 
   if (isLoading) {
-    return (
-      <Flex align="center" justify="center" direction="column" width="100%">
-        <Spinner />
-      </Flex>
-    )
+    return <LoadingSpinner />
   }
 
   if (!results && !isLoading) {

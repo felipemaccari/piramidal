@@ -1,6 +1,5 @@
 import {
   Flex,
-  Spinner,
   Table,
   TableContainer,
   Tbody,
@@ -10,6 +9,7 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
+import LoadingSpinner from 'components/LoadingSpinner'
 import { useQueryTournamentResults } from 'service/tournaments'
 
 type PyramidResultsProps = {
@@ -23,7 +23,7 @@ const LayoutPyramidResults = ({ tournamentID }: PyramidResultsProps) => {
   )
 
   if (isLoading) {
-    return <Spinner />
+    return <LoadingSpinner />
   }
 
   if (!tournamentResults) {
