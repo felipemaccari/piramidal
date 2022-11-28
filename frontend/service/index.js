@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { getSession } from 'next-auth/react'
+import { getSession, signOut } from 'next-auth/react'
 
 export const getApi = async () => {
   const api = axios.create({
@@ -11,7 +11,7 @@ export const getApi = async () => {
 
   api.interceptors.request.use(
     config => {
-      config.headers['Authorization'] = 'Bearer ' + tokenFrom?.token
+      config.headers.Authorization = 'Bearer ' + tokenFrom?.token
       return config
     },
     error => {
@@ -20,6 +20,19 @@ export const getApi = async () => {
   )
 
   api.defaults.headers.common.Authorization = `Bearer ${tokenFrom}`
+
+  api.interceptors.response.use(
+    function (response) {
+      return response
+    },
+    function (error) {
+      if (error.response.status === 401) {
+        signOut()
+      } else {
+        return Promise.reject(error)
+      }
+    }
+  )
 
   return api
 }
