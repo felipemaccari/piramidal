@@ -4,10 +4,11 @@ import type { AppProps } from 'next/app'
 
 import { signIn, useSession } from 'next-auth/react'
 
+import LoadingSpinner from 'components/LoadingSpinner'
+import MainLayout from 'layouts/MainLayout'
 import Providers from 'providers'
 import { NextPageWithLayout } from 'types/page'
 
-import MainLayout from 'layouts/MainLayout'
 import 'service/index'
 import 'styles/globals.css'
 
@@ -47,5 +48,5 @@ function Auth({ children }: any) {
   if (isUser) {
     return children
   }
-  return <div>Loading...</div>
+  return <LoadingSpinner />
 }

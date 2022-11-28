@@ -23,9 +23,10 @@ import { ptBR } from 'date-fns/locale'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useMutationAddChallenge } from 'service/challenges'
 import { useQueryPlayers } from 'service/players'
-import { useTournamentState } from 'state/tournament'
+import { TOURNAMENT_KEY } from 'utils/constants'
 
 import { formatDate } from 'utils/formatters'
+import { useLocalStorage } from 'utils/hooks'
 
 type AddChallengeProps = {
   tournamentID: string
@@ -36,7 +37,7 @@ type AddChallengeProps = {
 }
 
 const LayoutChallengesAddChallenge = () => {
-  const tournamentID = useTournamentState(state => state.tournamentID)
+  const [tournamentID] = useLocalStorage<string>(TOURNAMENT_KEY)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 

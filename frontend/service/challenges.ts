@@ -21,6 +21,7 @@ export type ListChallengeProps = {
   destinationPlayerID: string
   destinationPlayerName: string
   gameDate: string
+  finished: boolean
 }
 
 export type ListChallengeResults = {

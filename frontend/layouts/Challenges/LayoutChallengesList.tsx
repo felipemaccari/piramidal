@@ -10,11 +10,12 @@ import {
   Text
 } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+
 import { format, isAfter } from 'date-fns'
 import dynamic from 'next/dynamic'
 import { useQueryListChallengesByTournament } from 'service/challenges'
-
-import { useTournamentState } from 'state/tournament'
+import { TOURNAMENT_KEY } from 'utils/constants'
+import { useLocalStorage } from 'utils/hooks'
 
 const LayoutChallengesListResults = dynamic(
   () => import('./LayoutChallengesListResults')
@@ -56,7 +57,7 @@ const TextStatus = ({ gameDate, finalDate, finished }: TextStatusProps) => {
 }
 
 const LayoutChallengesList = () => {
-  const tournamentID = useTournamentState(state => state.tournamentID)
+  const [tournamentID] = useLocalStorage<string>(TOURNAMENT_KEY)
 
   const { data: challenges = [], isLoading } =
     useQueryListChallengesByTournament(tournamentID, {})

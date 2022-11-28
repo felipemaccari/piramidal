@@ -20,7 +20,10 @@ import { NextPageWithLayout } from 'types/page'
 import { signIn } from 'next-auth/react'
 import piramidal from 'public/assets/brand/pyramidal.png'
 
-const StyledForm = styled.form``
+const StyledForm = styled.form`
+  width: 100%;
+  max-width: 500px;
+`
 
 type SignInFormData = {
   email: string
@@ -55,7 +58,13 @@ const Home: NextPageWithLayout = () => {
   }
 
   return (
-    <Flex width="100%" justify="center" align="center" direction="column">
+    <Flex
+      width="100%"
+      justify="center"
+      align="center"
+      direction="column"
+      mt="-100px"
+    >
       <Box>
         <Image
           src={piramidal}
@@ -66,7 +75,7 @@ const Home: NextPageWithLayout = () => {
       </Box>
 
       <StyledForm onSubmit={handleSubmit(handleSignIn)}>
-        <FormControl mt="40px" maxW="500px">
+        <FormControl mt="40px">
           <FormLabel>Seu email</FormLabel>
           <Input type="email" {...register('email')} />
         </FormControl>

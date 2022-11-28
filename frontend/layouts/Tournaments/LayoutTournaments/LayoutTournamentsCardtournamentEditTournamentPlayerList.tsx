@@ -29,8 +29,9 @@ const LayoutTournamentsCardtournamentEditTournamentPlayerList = ({
     }
   })
 
-  const { data: tournamentPlayers, isLoading: isLoadingTournamentPlayers } =
-    useQueryTournamentPlayers(tournament.id, {
+  const { isLoading: isLoadingTournamentPlayers } = useQueryTournamentPlayers(
+    tournament.id,
+    {
       onSuccess: (data: any) => {
         const tournamentPlayers = data.map((player: any) => player.id)
         const selectedPlayers = players?.map(player =>
@@ -50,7 +51,8 @@ const LayoutTournamentsCardtournamentEditTournamentPlayerList = ({
           isClosable: true
         })
       }
-    })
+    }
+  )
 
   // const selectAllPlayers = useCallback(() => {
   //   setSelectedPlayers(players.map(player => player.id))

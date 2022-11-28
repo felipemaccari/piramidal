@@ -12,19 +12,18 @@ import {
   IListActiveTournamentDTO,
   useQueryListActiveTournament
 } from 'service/tournaments'
-import { useTournamentState } from 'state/tournament'
+import { TOURNAMENT_KEY } from 'utils/constants'
+import { useLocalStorage } from 'utils/hooks'
 import LayoutPyramidResults from './LayoutPyramidResults'
 import LayoutPyramidTournament from './LayoutPyramidTournament'
 
 const LayoutPyramid = () => {
-  const handleSetTournament = useTournamentState(state => state.setTournament)
+  const [, setTournamentID] = useLocalStorage<string>(TOURNAMENT_KEY, '')
 
   const { data: activeTournament, isLoading } = useQueryListActiveTournament({
     onSuccess: (tournamentData: IListActiveTournamentDTO) => {
-      const { id, description, initialDate, finalDate, active } =
-        tournamentData.tournament
-
-      handleSetTournament(id, description, initialDate, finalDate, active)
+      const { id } = tournamentData.tournament
+      setTournamentID(id)
     }
   })
 
