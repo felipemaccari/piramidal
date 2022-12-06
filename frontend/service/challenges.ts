@@ -68,6 +68,28 @@ export const useQueryListChallengesByTournament = (
     options
   )
 
+export const useQueryListAvaliableDestinationPlayer = (
+  playerID: string,
+  tournamentID: string,
+  options: {}
+) =>
+  useQuery<[]>(
+    ['queryListAvaliableDestinationPlayer'],
+    async () => {
+      const api = await getApi()
+
+      return api
+        .get(
+          `${URL_API}/challenges/player-avaliable/${playerID}/${tournamentID}`
+        )
+        .then(result => result.data)
+    },
+    {
+      enabled: false,
+      ...options
+    }
+  )
+
 export const useQueryListChallengeResults = (
   challengeID: string,
   options: {}

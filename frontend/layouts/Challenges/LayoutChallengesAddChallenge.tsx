@@ -20,9 +20,13 @@ import {
 import { useQueryClient } from '@tanstack/react-query'
 import { format, parse } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useMutationAddChallenge } from 'service/challenges'
-import { useQueryPlayers } from 'service/players'
+import {
+  useMutationAddChallenge,
+  useQueryListAvaliableDestinationPlayer
+} from 'service/challenges'
+import { useQueryTournamentPlayers } from 'service/tournaments'
 import { TOURNAMENT_KEY } from 'utils/constants'
 
 import { formatDate } from 'utils/formatters'
@@ -39,6 +43,8 @@ type AddChallengeProps = {
 const LayoutChallengesAddChallenge = () => {
   const [tournamentID] = useLocalStorage<string>(TOURNAMENT_KEY)
 
+  const [selectedOriginPlayer, setSelectedOriginPlayer] = useState('')
+
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { register, handleSubmit, setValue, reset } =
@@ -46,9 +52,42 @@ const LayoutChallengesAddChallenge = () => {
 
   const queryClient = useQueryClient()
 
-  const { data: players = [], isLoading: isLoadingPlayers } = useQueryPlayers(
-    {}
+  const { data: players, isLoading: isLoadingPlayers } =
+    useQueryTournamentPlayers(tournamentID, {
+      onError: () => {
+        toast({
+          title: 'Não foi possível carregar a lista de jogadores participantes',
+          status: 'error',
+          duration: 4000,
+          isClosable: true
+        })
+      }
+    })
+
+  const {
+    data: avaliablePlayers,
+    isLoading: isLoadingAvaliablePlayers,
+    refetch
+  } = useQueryListAvaliableDestinationPlayer(
+    selectedOriginPlayer,
+    tournamentID,
+    {
+      onError: () => {
+        toast({
+          title: 'Não foi possível carregar a lista de jogadores participantes',
+          status: 'error',
+          duration: 4000,
+          isClosable: true
+        })
+      }
+    }
   )
+
+  useEffect(() => {
+    if (selectedOriginPlayer) {
+      refetch()
+    }
+  }, [selectedOriginPlayer, refetch])
 
   const { mutate, isLoading } = useMutationAddChallenge({
     onSuccess: () => {
@@ -77,8 +116,6 @@ const LayoutChallengesAddChallenge = () => {
   const toast = useToast()
 
   const handleAddChallenge: SubmitHandler<AddChallengeProps> = values => {
-    console.log('values', values)
-
     const { initialDate, finalDate, originPlayerID, destinationPlayerID } =
       values
 
@@ -157,8 +194,9 @@ const LayoutChallengesAddChallenge = () => {
                     placeholder="Selecione o jogador"
                     isDisabled={isLoadingPlayers}
                     {...register('originPlayerID')}
+                    onChange={e => setSelectedOriginPlayer(e.target.value)}
                   >
-                    {players.map(player => (
+                    {players?.map(player => (
                       <option key={player.id} value={player.id}>
                         {player.name}
                       </option>
@@ -172,10 +210,12 @@ const LayoutChallengesAddChallenge = () => {
                   <FormLabel>Jogador Desafiado</FormLabel>
                   <Select
                     placeholder="Selecione o jogador"
-                    isDisabled={isLoadingPlayers}
+                    isDisabled={
+                      isLoadingAvaliablePlayers || !avaliablePlayers?.length
+                    }
                     {...register('destinationPlayerID')}
                   >
-                    {players.map(player => (
+                    {avaliablePlayers?.map(player => (
                       <option key={player.id} value={player.id}>
                         {player.name}
                       </option>
