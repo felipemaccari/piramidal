@@ -9,6 +9,7 @@ interface ITournamentsRepository {
   findByID(id: string): Promise<Tournament>;
   edit(data: IEditTournamentDTO): Promise<void>;
   findActive(): Promise<Tournament>;
+  delete(id: string): Promise<void>;
 }
 
 export default ITournamentsRepository;

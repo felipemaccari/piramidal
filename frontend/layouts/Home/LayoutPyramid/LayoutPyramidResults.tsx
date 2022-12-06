@@ -1,15 +1,14 @@
 import {
-  Flex,
   Table,
   TableContainer,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr
 } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+import WarningMessage from 'components/WarningMessage'
 import { useQueryTournamentResults } from 'service/tournaments'
 
 type PyramidResultsProps = {
@@ -28,30 +27,10 @@ const LayoutPyramidResults = ({ tournamentID }: PyramidResultsProps) => {
 
   if (!tournamentResults) {
     return (
-      <Flex
-        my="100px"
-        align="center"
-        justify="center"
-        width="100%"
-        direction="column"
-      >
-        <Text
-          color="grayText"
-          fontWeight="700"
-          fontSize="2rem"
-          textAlign="center"
-        >
-          Nenhum desafio cadastrado no momento!
-        </Text>
-        <Text
-          color="grayText"
-          fontWeight="500"
-          fontSize="1rem"
-          textAlign="center"
-        >
-          Você ja pode desafiar os outros jogadores e movimentar o torneio!
-        </Text>
-      </Flex>
+      <WarningMessage
+        title="Nenhum desafio cadastrado no momento!"
+        subtitle="Você ja pode desafiar os outros jogadores e movimentar o torneio!"
+      />
     )
   }
 

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "typeorm-migration-create": "typeorm migration:create src/shared/infra/typeorm/migrations/AddColumnFinishedTableChallenges",
+    "typeorm-migration-create": "typeorm migration:create src/shared/infra/typeorm/migrations/TournamentAddColumnDeletedAt",
     "typeorm-migration-run": "typeorm-ts-node-esm migration:run -d src/shared/infra/typeorm/databaseMigrationRun.ts",
     "test": "jest"
   },

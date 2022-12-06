@@ -27,7 +27,7 @@ class ListActiveTournamentUseCase {
     const activeTournament = await this.tournamentsRepository.findActive();
 
     if (!activeTournament) {
-      throw new AppError("Tournament does not exists");
+      throw new AppError("No active tournaments");
     }
 
     const tournamentPlayers =

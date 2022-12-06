@@ -1,4 +1,3 @@
-import { CloseIcon } from '@chakra-ui/icons'
 import {
   Button,
   MenuItem,
@@ -15,9 +14,10 @@ import {
 } from '@chakra-ui/react'
 
 import { useQueryClient } from '@tanstack/react-query'
-import { useMutationEditTournament } from 'service/tournaments'
+import { BiTrash } from 'react-icons/bi'
+import { useMutationDeleteTournamentPlayers } from 'service/tournaments'
 
-const LayoutTournamentsCardTournamentFinishTournament = ({
+const LayoutTournamentsCardTournamentDeleteTournament = ({
   tournament
 }: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -25,11 +25,11 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
   const queryClient = useQueryClient()
   const toast = useToast()
 
-  const { mutate, isLoading } = useMutationEditTournament({
+  const { mutate, isLoading } = useMutationDeleteTournamentPlayers({
     onSuccess: () => {
       onClose()
       toast({
-        title: 'O torneio foi encerrado!',
+        title: 'O torneio foi removido!',
         status: 'success',
         duration: 4000,
         isClosable: true
@@ -39,7 +39,7 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
     },
     onError: () => {
       toast({
-        title: 'Não foi possível encerrar o torneio. Tente novamente.',
+        title: 'Não foi possível remover o torneio. Tente novamente.',
         status: 'error',
         duration: 4000,
         isClosable: true
@@ -48,19 +48,19 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
   })
 
   const handleFinishTournament = () => {
-    mutate({ ...tournament, finished: true })
+    mutate(tournament.id)
   }
 
   return (
     <>
-      <MenuItem onClick={onOpen} icon={<CloseIcon />}>
-        Encerrar Torneio
+      <MenuItem onClick={onOpen} icon={<BiTrash />} color="red">
+        Remover Torneio
       </MenuItem>
 
       <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Deseja realmente encerrar o torneio?</ModalHeader>
+          <ModalHeader>Deseja realmente remover o torneio?</ModalHeader>
 
           <ModalCloseButton />
 
@@ -78,11 +78,11 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
             <Button
               isLoading={isLoading}
               variant="solid"
-              background="primary"
+              background="red"
               color="white"
               onClick={handleFinishTournament}
             >
-              Encerrar
+              Remover
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -91,4 +91,4 @@ const LayoutTournamentsCardTournamentFinishTournament = ({
   )
 }
 
-export default LayoutTournamentsCardTournamentFinishTournament
+export default LayoutTournamentsCardTournamentDeleteTournament

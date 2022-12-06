@@ -33,6 +33,9 @@ class Tournament {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column({ nullable: true })
+  deletedAt: Date;
+
   constructor() {
     if (!this.id) {
       this.id = uuid();

@@ -1,5 +1,6 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+import WarningMessage from 'components/WarningMessage'
 
 import { useQueryPlayers } from 'service/players'
 import LayoutPlayersListCard from './LayoutPlayersListCard'
@@ -13,30 +14,10 @@ const LayoutPlayersList = () => {
 
   if (players.length === 0) {
     return (
-      <Flex
-        my="100px"
-        align="center"
-        justify="center"
-        width="100%"
-        direction="column"
-      >
-        <Text
-          color="grayText"
-          fontWeight="700"
-          fontSize="2rem"
-          textAlign="center"
-        >
-          Nenhum jogador cadastrado
-        </Text>
-        <Text
-          color="grayText"
-          fontWeight="500"
-          fontSize="1rem"
-          textAlign="center"
-        >
-          Quando você cadastrar novos jogadores, eles vão aparecer aqui!
-        </Text>
-      </Flex>
+      <WarningMessage
+        title="Nenhum jogador cadastrado"
+        subtitle="Quando você cadastrar novos jogadores, eles vão aparecer aqui!"
+      />
     )
   }
 

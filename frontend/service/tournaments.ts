@@ -1,5 +1,6 @@
 import { QueryOptions, useMutation, useQuery } from '@tanstack/react-query'
 import { getApi } from 'service'
+import { TOURNAMENT_KEY } from 'utils/constants'
 
 const URL_API = process.env.NEXT_PUBLIC_API_HOST
 
@@ -85,7 +86,20 @@ export const useQueryListTournaments = (options: {}) =>
     async () => {
       const api = await getApi()
 
-      return api.get(`${URL_API}/tournaments`).then(result => result.data)
+      return api.get(`${URL_API}/tournaments`).then(result => {
+        const tournaments = result.data
+
+        if (!tournaments.length) {
+          window.localStorage.removeItem(TOURNAMENT_KEY)
+          return
+        }
+
+        if (tournaments.length === 1) {
+          window.localStorage.setItem(TOURNAMENT_KEY, tournaments[0].id)
+        }
+
+        return tournaments
+      })
     },
     options
   )
@@ -146,3 +160,16 @@ export const useMutationEditTournament = (options: any) =>
       .put(`${URL_API}/tournaments/${tournamentData.id}`, { ...tournamentData })
       .then(result => result.data)
   }, options)
+
+export const useMutationDeleteTournamentPlayers = (options: {}) =>
+  useMutation<[], QueryOptions>(
+    ['deleteTournaments'],
+    async tournamentID => {
+      const api = await getApi()
+
+      return api
+        .delete(`${URL_API}/tournaments/${tournamentID}`)
+        .then(result => result.data)
+    },
+    { ...options }
+  )

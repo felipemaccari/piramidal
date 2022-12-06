@@ -13,6 +13,10 @@ class TournamentsRepository implements ITournamentsRepository {
     this.repository = AppDataSource.getRepository(Tournament);
   }
 
+  activeTournaments(tournaments) {
+    return tournaments.filter((tournament) => !tournament.deletedAt);
+  }
+
   async create({
     description,
     initialDate,
@@ -32,11 +36,17 @@ class TournamentsRepository implements ITournamentsRepository {
   async list(): Promise<Tournament[]> {
     const tournaments = await this.repository.find();
 
-    return tournaments;
+    const activeTournaments = this.activeTournaments(tournaments);
+
+    return activeTournaments;
   }
 
   async findByID(id: string): Promise<Tournament> {
     const tournament = await this.repository.findOneBy({ id });
+
+    if (tournament.deletedAt) {
+      return;
+    }
 
     return tournament;
   }
@@ -48,6 +58,7 @@ class TournamentsRepository implements ITournamentsRepository {
     active,
     finished,
     tournamentID,
+    deletedAt,
   }: IEditTournamentDTO): Promise<void> {
     await this.repository.update(tournamentID, {
       description,
@@ -55,15 +66,22 @@ class TournamentsRepository implements ITournamentsRepository {
       finalDate,
       active,
       finished,
+      deletedAt,
     });
   }
 
   async findActive(): Promise<Tournament> {
-    const activeTournament = await this.repository.findOneBy({
+    const openedTournaments = await this.repository.findBy({
       finished: false,
     });
 
-    return activeTournament;
+    const activeTournaments = await this.activeTournaments(openedTournaments);
+
+    return activeTournaments[0];
+  }
+
+  async delete(tournamentID: string): Promise<void> {
+    await this.repository.delete(tournamentID);
   }
 }
 

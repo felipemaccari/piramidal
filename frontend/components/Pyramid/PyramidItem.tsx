@@ -3,9 +3,7 @@ import {
   Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Text
 } from '@chakra-ui/react'
@@ -43,7 +41,7 @@ const PyramidItem = ({ tournamentPlayer }: PyramidItemProps) => {
             transform: 'translateY(-2px)'
           }}
         >
-          <Text textAlign="center" fontWeight={500} fontSize="0.9rem">
+          <Text textAlign="center" fontWeight={600} fontSize="0.9rem">
             {tournamentPlayer.player.name}
           </Text>
         </Flex>
@@ -51,8 +49,7 @@ const PyramidItem = ({ tournamentPlayer }: PyramidItemProps) => {
 
       <PopoverContent>
         <PopoverArrow />
-        <PopoverCloseButton />
-        <PopoverHeader>Dados do Desafio</PopoverHeader>
+
         <PopoverBody>
           {!tournamentPlayer.activeChallenge && (
             <Text fontWeight={500}>Esse jogador pode ser desafiado!</Text>

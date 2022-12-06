@@ -1,5 +1,6 @@
 import { Flex, Text, useToast } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+import WarningMessage from 'components/WarningMessage'
 import { useState } from 'react'
 
 import { AiOutlineUser } from 'react-icons/ai'
@@ -97,26 +98,10 @@ const LayoutTournamentsCardtournamentEditTournamentPlayerList = ({
       </Flex>
 
       {playerList?.length === 0 && (
-        <Flex
-          my="50px"
-          align="center"
-          justify="center"
-          width="100%"
-          direction="column"
-        >
-          <Text
-            color="grayText"
-            fontWeight="700"
-            fontSize="1.5rem"
-            textAlign="center"
-          >
-            Nenhum jogador cadastrado
-          </Text>
-
-          <Text color="primary" fontWeight={'700'}>
-            Cadastre novos jogadores agora pra começar o torneio!
-          </Text>
-        </Flex>
+        <WarningMessage
+          title="Nenhum jogador cadastrado"
+          subtitle="Cadastre novos jogadores agora pra começar o torneio!"
+        />
       )}
 
       {playerList?.map((player: any) => (

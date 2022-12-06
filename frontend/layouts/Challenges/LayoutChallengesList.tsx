@@ -10,6 +10,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+import WarningMessage from 'components/WarningMessage'
 
 import { format, isAfter } from 'date-fns'
 import dynamic from 'next/dynamic'
@@ -68,31 +69,10 @@ const LayoutChallengesList = () => {
 
   if (challenges.length === 0 && !isLoading) {
     return (
-      <Flex
-        my="100px"
-        align="center"
-        justify="center"
-        width="100%"
-        direction="column"
-      >
-        <Text
-          color="grayText"
-          fontWeight="700"
-          fontSize="2rem"
-          textAlign="center"
-        >
-          Nenhum desafio cadastrado para o torneio atual.
-        </Text>
-
-        <Text
-          color="grayText"
-          fontWeight="500"
-          fontSize="1rem"
-          textAlign="center"
-        >
-          Aqui você poderá adicionar os desafios e seus resultados!
-        </Text>
-      </Flex>
+      <WarningMessage
+        title="Nenhum desafio cadastrado para o torneio atual."
+        subtitle="Aqui você poderá adicionar os desafios e seus resultados!"
+      />
     )
   }
 

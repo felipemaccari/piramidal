@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import CreateTournamentController from "@modules/tournaments/useCases/createTournament/CreateTournamentController";
 import CreateTournamentPlayerController from "@modules/tournaments/useCases/createTournamentPlayer/CreateTournamentPlayerController";
+import DeleteTournamentController from "@modules/tournaments/useCases/deleteTournament/DeleteTournamentController";
 import EditTournamentController from "@modules/tournaments/useCases/editTournament/EditTournamentController";
 import EditTournamentPlayerController from "@modules/tournaments/useCases/editTournamentPlayer/EditTournamentPlayerController";
 import ListActiveTournamentController from "@modules/tournaments/useCases/listActiveTournament/ListActiveTournamentController";
@@ -22,6 +23,7 @@ const listTournamentPlayersController = new ListTournamentPlayersController();
 const raffleTournamentController = new RaffleTournamentController();
 const listActiveTournamentController = new ListActiveTournamentController();
 const listTournamentResultsController = new ListTournamentResultsController();
+const deleteTournamentController = new DeleteTournamentController();
 
 tournamentsRoutes.post(
   "/",
@@ -56,6 +58,11 @@ tournamentsRoutes.put(
   "/player/:tournamentPlayerID",
   ensureAuthenticated,
   editTournamentPlayerController.handle
+);
+tournamentsRoutes.delete(
+  "/:tournamentID",
+  ensureAuthenticated,
+  deleteTournamentController.handle
 );
 
 export default tournamentsRoutes;

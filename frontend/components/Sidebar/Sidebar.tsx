@@ -1,7 +1,19 @@
+// @ts-nocheck
+
 import NextLink from 'next/link'
 
 import { AddIcon, ChevronRightIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, Link, List, ListItem, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Link,
+  List,
+  ListItem,
+  Text
+} from '@chakra-ui/react'
+import SelectTournament from 'components/SelectTournament'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { AiOutlineHome, AiOutlineTrophy, AiOutlineUser } from 'react-icons/ai'
@@ -45,13 +57,17 @@ const Sidebar = () => {
       position="sticky"
       direction="column"
       minHeight="calc(100vh - 70px)"
-      minW="12%"
+      width="15%"
       boxShadow=" rgba(0, 0, 0, 0.1) 0px 4px 12px"
     >
       <List pt={status !== 'loading' && !session?.user ? '30px' : '0'}>
+        <ListItem>
+          <SelectTournament />
+        </ListItem>
+
         {status !== 'loading' && !!session?.user && (
           <ListItem>
-            <Flex py="40px" px="30px">
+            <Flex px="30px" my="30px">
               <Button
                 leftIcon={<AddIcon />}
                 variant="solid"
@@ -64,6 +80,8 @@ const Sidebar = () => {
             </Flex>
           </ListItem>
         )}
+
+        <Divider mb="20px" />
 
         {sidebarOptions
           .filter(option => {

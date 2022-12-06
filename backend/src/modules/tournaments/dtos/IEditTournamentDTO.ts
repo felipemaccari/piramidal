@@ -5,6 +5,7 @@ interface IEditTournamentDTO {
   active?: boolean;
   finished?: boolean;
   tournamentID?: string;
+  deletedAt?: Date;
 }
 
 export default IEditTournamentDTO;

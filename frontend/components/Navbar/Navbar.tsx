@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 import { useSession } from 'next-auth/react'
 
 import { Button, Flex, Link } from '@chakra-ui/react'
+
 import NavbarAvatarMenu from './NavbarAvatarMenu'
 
 const Navbar = () => {

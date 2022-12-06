@@ -12,6 +12,7 @@ import {
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 
 import { format } from 'date-fns'
+import LayoutTournamentsCardTournamentDeleteTournament from './LayoutTournamentsCardTournamentDeleteTournament'
 import LayoutTournamentsCardTournamentEditTournament from './LayoutTournamentsCardTournamentEditTournament'
 import LayoutTournamentsFinishTournament from './LayoutTournamentsCardTournamentFinishTournament'
 
@@ -90,11 +91,19 @@ const LayoutTournamentsCardTournament = ({
           />
 
           <MenuList>
-            <LayoutTournamentsCardTournamentEditTournament
+            {!tournament.finished && (
+              <>
+                <LayoutTournamentsCardTournamentEditTournament
+                  tournament={tournament}
+                />
+
+                <LayoutTournamentsFinishTournament tournament={tournament} />
+              </>
+            )}
+
+            <LayoutTournamentsCardTournamentDeleteTournament
               tournament={tournament}
             />
-
-            <LayoutTournamentsFinishTournament tournament={tournament} />
           </MenuList>
         </Menu>
       </Flex>

@@ -8,6 +8,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import LoadingSpinner from 'components/LoadingSpinner'
+import WarningMessage from 'components/WarningMessage'
 import {
   IListActiveTournamentDTO,
   useQueryListActiveTournament
@@ -33,30 +34,10 @@ const LayoutPyramid = () => {
 
   if (!activeTournament) {
     return (
-      <Flex
-        my="100px"
-        align="center"
-        justify="center"
-        width="100%"
-        direction="column"
-      >
-        <Text
-          color="grayText"
-          fontWeight="700"
-          fontSize="2rem"
-          textAlign="center"
-        >
-          Nenhum torneio em andamento
-        </Text>
-        <Text
-          color="grayText"
-          fontWeight="500"
-          fontSize="1rem"
-          textAlign="center"
-        >
-          Fica ligado que o próximo ta quase ai! :)
-        </Text>
-      </Flex>
+      <WarningMessage
+        title="Nenhum torneio em andamento"
+        subtitle="Fica ligado que o próximo ta quase ai! :)"
+      />
     )
   }
 
