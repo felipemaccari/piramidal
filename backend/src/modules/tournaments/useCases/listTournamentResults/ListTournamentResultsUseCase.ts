@@ -50,9 +50,13 @@ class ListTournamentResultsUseCase {
         const challengesAsOrigin =
           await this.challengesRepository.findByOriginPlayerID(player.id);
 
+        const challengesOriginByTournament = challengesAsOrigin.filter(
+          (challenge) => challenge.tournamentID === tournamentID
+        );
+
         const challengesResultsAsOrigin =
           await this.challengesResultsRepository.listByChallengesIDS(
-            challengesAsOrigin
+            challengesOriginByTournament
           );
 
         let pointsAsOrigin = 0;
@@ -78,9 +82,14 @@ class ListTournamentResultsUseCase {
         const challengesAsDestination =
           await this.challengesRepository.findByDestinationPlayerID(player.id);
 
+        const challengesDestinationByTournament =
+          challengesAsDestination.filter(
+            (challenge) => challenge.tournamentID === tournamentID
+          );
+
         const challengesResultsAsDestination =
           await this.challengesResultsRepository.listByChallengesIDS(
-            challengesAsOrigin
+            challengesDestinationByTournament
           );
 
         let pointsAsDestination = 0;
@@ -105,13 +114,14 @@ class ListTournamentResultsUseCase {
 
         return {
           ...player,
-          challengesAsOrigin: challengesAsOrigin?.length || 0,
+          challengesAsOrigin: challengesOriginByTournament?.length || 0,
           pointsAsOrigin,
           pointsAsDestination,
           pointsTotal: pointsAsOrigin + pointsAsDestination,
           winAsDestination: winAsDestination?.length || 0,
           winAsOrigin: winAsOrigin?.length || 0,
-          challengesAsDestination: challengesAsDestination?.length || 0,
+          challengesAsDestination:
+            challengesDestinationByTournament?.length || 0,
         };
       })
     );

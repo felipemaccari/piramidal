@@ -66,22 +66,24 @@ const Sidebar = () => {
         </ListItem>
 
         {status !== 'loading' && !!session?.user && (
-          <ListItem>
-            <Flex px="30px" my="30px">
-              <Button
-                leftIcon={<AddIcon />}
-                variant="solid"
-                width="100%"
-                background="primary"
-                color="white"
-              >
-                Novo Desafio
-              </Button>
-            </Flex>
-          </ListItem>
-        )}
+          <>
+            <ListItem>
+              <Flex px="30px" my="30px">
+                <Button
+                  leftIcon={<AddIcon />}
+                  variant="solid"
+                  width="100%"
+                  background="primary"
+                  color="white"
+                >
+                  Novo Desafio
+                </Button>
+              </Flex>
+            </ListItem>
 
-        <Divider mb="20px" />
+            <Divider mb="20px" />
+          </>
+        )}
 
         {sidebarOptions
           .filter(option => {

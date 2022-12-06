@@ -11,7 +11,7 @@ class DeleteTournamentController {
       DeleteTournamentUseCase
     );
 
-    deleteTournamentController.execute(tournamentID);
+    await deleteTournamentController.execute(tournamentID);
 
     return response.status(201).send();
   }

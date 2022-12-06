@@ -27,6 +27,8 @@ const LayoutTournamentsCardTournamentDeleteTournament = ({
 
   const { mutate, isLoading } = useMutationDeleteTournamentPlayers({
     onSuccess: () => {
+      queryClient.invalidateQueries(['queryTournaments'])
+
       onClose()
       toast({
         title: 'O torneio foi removido!',
@@ -34,8 +36,6 @@ const LayoutTournamentsCardTournamentDeleteTournament = ({
         duration: 4000,
         isClosable: true
       })
-
-      queryClient.invalidateQueries(['queryTournaments'])
     },
     onError: () => {
       toast({

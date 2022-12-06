@@ -34,14 +34,38 @@ class CreateTournamentUseCase {
       .sort((a, b) => a.sortIndex - b.sortIndex)
       .map(({ player }) => player);
 
-    raffledPlayers.map(async (playerID, index) => {
-      const tournamentPlayer: ICreateTournamentPlayerDTO = {
-        playerID,
-        position: index,
-        tournamentID,
-      };
+    let pyramidItems: any[] = [];
+    let countIterator = 0;
+    let quantity = 1;
+    let playerPerLine = 2;
+    let lineNumber = 1;
 
-      await this.tournamentsPlayersRepository.create(tournamentPlayer);
+    while (countIterator < raffledPlayers.length) {
+      pyramidItems = [
+        ...pyramidItems,
+        { players: raffledPlayers.slice(countIterator, quantity), lineNumber },
+      ];
+
+      countIterator = quantity;
+      quantity = quantity + playerPerLine;
+      playerPerLine = playerPerLine + 2;
+      lineNumber++;
+    }
+
+    let position = 0;
+    pyramidItems.map((item) => {
+      return item.players.map(async (playerID) => {
+        const tournamentPlayer: ICreateTournamentPlayerDTO = {
+          playerID,
+          position: position,
+          lineNumber: item.lineNumber,
+          tournamentID,
+        };
+
+        position++;
+
+        await this.tournamentsPlayersRepository.create(tournamentPlayer);
+      });
     });
   }
 }
