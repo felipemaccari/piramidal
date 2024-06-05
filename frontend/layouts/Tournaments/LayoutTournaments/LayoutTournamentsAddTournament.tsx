@@ -76,7 +76,8 @@ const LayoutTournamentsAddTournament = () => {
       description,
       initialDate: format(initialParsed, 'yyyy-MM-dd'),
       finalDate: format(finalParsed, 'yyyy-MM-dd'),
-      players: selectedPlayers
+      players: selectedPlayers,
+      active: true
     }
 
     mutate(newTournament)

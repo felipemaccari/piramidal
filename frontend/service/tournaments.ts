@@ -5,12 +5,13 @@ import { TOURNAMENT_KEY } from 'utils/constants'
 const URL_API = process.env.NEXT_PUBLIC_API_HOST
 
 type AddTournamentProps = {
-  id: string
+  id?: string
   description: string
   initialDate: any
   finalDate: any
   players: Array<string>
   active: boolean
+  finished?: boolean
 }
 
 export type ActiveChallenge = {
@@ -131,7 +132,7 @@ export const useQueryTournamentResults = (tournamentID: string, options: {}) =>
   )
 
 export const useQueryTournamentPlayers = (tournamentID: string, options: {}) =>
-  useQuery<[], QueryOptions>(
+  useQuery<[{ id: number; name: string }], QueryOptions>(
     ['queryTournaments', tournamentID],
     async () => {
       const api = await getApi()

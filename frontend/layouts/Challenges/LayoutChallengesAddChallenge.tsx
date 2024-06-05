@@ -196,11 +196,12 @@ const LayoutChallengesAddChallenge = () => {
                     {...register('originPlayerID')}
                     onChange={e => setSelectedOriginPlayer(e.target.value)}
                   >
-                    {players?.map(player => (
-                      <option key={player.id} value={player.id}>
-                        {player.name}
-                      </option>
-                    ))}
+                    {players &&
+                      players?.map(player => (
+                        <option key={player.id} value={player.id}>
+                          {player.name}
+                        </option>
+                      ))}
                   </Select>
                 </FormControl>
               </Flex>

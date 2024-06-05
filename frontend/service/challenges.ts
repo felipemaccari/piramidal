@@ -73,7 +73,7 @@ export const useQueryListAvaliableDestinationPlayer = (
   tournamentID: string,
   options: {}
 ) =>
-  useQuery<[]>(
+  useQuery<[{ id: number; name: string }]>(
     ['queryListAvaliableDestinationPlayer'],
     async () => {
       const api = await getApi()

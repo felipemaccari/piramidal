@@ -7,6 +7,7 @@ type QueryPlayerProps = {
   id: string
   name: string
   phone: string
+  active: boolean
 }
 
 type MutationPlayerProps = {

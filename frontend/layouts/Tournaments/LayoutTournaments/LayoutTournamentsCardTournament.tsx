@@ -17,10 +17,13 @@ import LayoutTournamentsCardTournamentEditTournament from './LayoutTournamentsCa
 import LayoutTournamentsFinishTournament from './LayoutTournamentsCardTournamentFinishTournament'
 
 type Tournament = {
+  id?: string
   description: string
   initialDate: any
   finalDate: any
-  finished: boolean
+  players: Array<string>
+  active: boolean
+  finished?: boolean
 }
 
 type LayoutTournamentsCardTournamentProps = {
