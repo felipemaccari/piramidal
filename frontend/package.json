@@ -2,11 +2,6 @@
   "name": "piramidal",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": ">=16.0.0",
-    "yarn": ">=1.22.0",
-    "npm": "please-use-yarn"
-  },
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
@@ -26,7 +21,7 @@
     "downshift": "^7.0.0",
     "framer-motion": "^7.5.3",
     "next": "12.2.5",
-    "next-auth": "^4.13.0",
+    "next-auth": "^4.24.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.37.0",
