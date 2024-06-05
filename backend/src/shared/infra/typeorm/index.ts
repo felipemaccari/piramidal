@@ -2,10 +2,10 @@ import { DataSource } from "typeorm";
 
 const AppDataSource = new DataSource({
   type: "postgres",
-  host: "database",
+  host: "piramidal-database.internal",
   port: 5432,
-  username: "admin",
-  password: "441332",
+  username: "postgres",
+  password: "NNYzwA0gVtbaDgk",
   database: "piramidal",
   synchronize: true,
   logging: false,

@@ -9,10 +9,13 @@ export default NextAuth({
     CredentialProvider({
       name: 'Credentials',
       async authorize(credentials) {
-        const user = await axios.post('http://localhost:3335/session', {
-          email: credentials.email,
-          password: credentials.password
-        })
+        const user = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_HOST}/session`,
+          {
+            email: credentials.email,
+            password: credentials.password
+          }
+        )
 
         if (user) {
           return user.data.user

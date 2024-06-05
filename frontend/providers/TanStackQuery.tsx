@@ -16,6 +16,7 @@ const TanStackQuery = ({ children, pageProps }: ProviderProps) => {
       new QueryClient({
         defaultOptions: {
           queries: {
+            retry: false,
             refetchOnWindowFocus: false
           }
         }
