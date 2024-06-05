@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.11",
